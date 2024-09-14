@@ -16,6 +16,7 @@
 		7B272DBC2C865EF3002DDD32 /* HavaBiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B272DBB2C865EF3002DDD32 /* HavaBiteTests.swift */; };
 		7B272DC62C865EF3002DDD32 /* HavaBiteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B272DC52C865EF3002DDD32 /* HavaBiteUITests.swift */; };
 		7B272DC82C865EF3002DDD32 /* HavaBiteUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B272DC72C865EF3002DDD32 /* HavaBiteUITestsLaunchTests.swift */; };
+		7B6AB0D72C925EE80023FE72 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6AB0D62C925EE80023FE72 /* WelcomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		7B272DC12C865EF3002DDD32 /* HavaBiteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HavaBiteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B272DC52C865EF3002DDD32 /* HavaBiteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HavaBiteUITests.swift; sourceTree = "<group>"; };
 		7B272DC72C865EF3002DDD32 /* HavaBiteUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HavaBiteUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7B6AB0D62C925EE80023FE72 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +101,12 @@
 		7B272DA32C865EF2002DDD32 /* HavaBite */ = {
 			isa = PBXGroup;
 			children = (
+				7B6AB0D22C925B540023FE72 /* Model */,
+				7B6AB0D42C925B6A0023FE72 /* View */,
+				7B6AB0D52C925B700023FE72 /* Controller */,
 				7B272DA42C865EF2002DDD32 /* AppDelegate.swift */,
 				7B272DA62C865EF2002DDD32 /* SceneDelegate.swift */,
 				7B272DA82C865EF2002DDD32 /* ViewController.swift */,
-				7B272DAA2C865EF2002DDD32 /* Main.storyboard */,
 				7B272DAD2C865EF3002DDD32 /* Assets.xcassets */,
 				7B272DAF2C865EF3002DDD32 /* LaunchScreen.storyboard */,
 				7B272DB22C865EF3002DDD32 /* Info.plist */,
@@ -125,6 +129,29 @@
 				7B272DC72C865EF3002DDD32 /* HavaBiteUITestsLaunchTests.swift */,
 			);
 			path = HavaBiteUITests;
+			sourceTree = "<group>";
+		};
+		7B6AB0D22C925B540023FE72 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7B6AB0D42C925B6A0023FE72 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7B272DAA2C865EF2002DDD32 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7B6AB0D52C925B700023FE72 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7B6AB0D62C925EE80023FE72 /* WelcomeViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B272DA92C865EF2002DDD32 /* ViewController.swift in Sources */,
+				7B6AB0D72C925EE80023FE72 /* WelcomeViewController.swift in Sources */,
 				7B272DA52C865EF2002DDD32 /* AppDelegate.swift in Sources */,
 				7B272DA72C865EF2002DDD32 /* SceneDelegate.swift in Sources */,
 			);
