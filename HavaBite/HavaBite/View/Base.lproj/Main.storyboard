@@ -28,6 +28,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Log in"/>
+                                <connections>
+                                    <action selector="logInButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fdD-iU-foF"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdB-Qz-0Go">
                                 <rect key="frame" x="155" y="725" width="82" height="35"/>
@@ -35,7 +38,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Sign up"/>
                                 <connections>
-                                    <action selector="signUpButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6DO-Uz-N4o"/>
+                                    <action selector="signUpButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vi1-6O-7L0"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="82K-bv-Bsz">
@@ -70,7 +73,8 @@
                         <color key="tintColor" systemColor="systemBrownColor"/>
                     </view>
                     <connections>
-                        <outlet property="logInButton" destination="Sek-fb-R3z" id="wy8-ni-zKf"/>
+                        <outlet property="emailTextField" destination="82K-bv-Bsz" id="2Kq-Go-8mn"/>
+                        <outlet property="passwordTextField" destination="HXU-CP-8pa" id="YJH-zj-Uxs"/>
                         <segue destination="ld4-6n-baT" kind="show" identifier="toRegister" id="qr9-xP-OfX"/>
                     </connections>
                 </viewController>
@@ -81,7 +85,7 @@
         <!--Register View Controller-->
         <scene sceneID="ce4-4K-9q2">
             <objects>
-                <viewController id="ld4-6n-baT" customClass="RegisterViewController" customModule="HavaBite" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterViewController" id="ld4-6n-baT" customClass="RegisterViewController" customModule="HavaBite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MQs-Nt-ygx">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

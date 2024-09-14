@@ -28,15 +28,16 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func registerButtonClicked(_ sender: Any) {
-        register()
+        register(firstName: firstnameText.text ?? "", lastName: lastnameText.text ?? "",
+                 email: emailText.text ?? "", password: passwordText.text ?? "")
     }
 }
 
 
 extension RegisterViewController{
     
-    func register() -> Bool{
-        if let firstName = firstnameText.text, let lastName = lastnameText.text, let email = emailText.text, let password = passwordText.text {
+    func register(firstName:String, lastName:String, email:String, password:String) -> Bool{
+        if firstName != "" && lastName != "" && email != "" &&  password != "" {
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                 if let e = error {
                     let message = e.localizedDescription
@@ -61,11 +62,26 @@ extension RegisterViewController{
                     
                     let message = "User Created"
                     let alert = UIAlertController(title: "Success", message: message, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+                        // Navigate to Hello after the alert is dismissed
+//                        self.performSegue(withIdentifier: "registerToHello", sender: self)
+                    })
                     self.present(alert, animated: true, completion: nil)
                 }
             }
+            return true
         }
-        return true
+        
+        else{
+            let message = "Please ensure all fields are filled."
+            let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+                // Navigate to Hello after the alert is dismissed
+//                self.performSegue(withIdentifier: "registerToHello", sender: self)
+            })
+            self.present(alert, animated: true, completion: nil)
+            return false
+        }
             
     }
     
