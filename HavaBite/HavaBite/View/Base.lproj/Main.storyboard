@@ -82,6 +82,21 @@
             </objects>
             <point key="canvasLocation" x="57.251908396946561" y="-2.1126760563380285"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="aLu-2c-rb3">
+            <objects>
+                <viewController id="voN-cC-GAN" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yRd-fs-IHM">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Yvp-dD-PTq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jSb-ul-kW7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1497" y="488"/>
+        </scene>
         <!--Register View Controller-->
         <scene sceneID="ce4-4K-9q2">
             <objects>
@@ -172,10 +187,56 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vgv-vh-Gvn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1259" y="-330"/>
+            <point key="canvasLocation" x="1498" y="-422"/>
+        </scene>
+        <!--Side Menu View Controller-->
+        <scene sceneID="Y4V-yf-zDS">
+            <objects>
+                <viewController storyboardIdentifier="SideMenuID" id="fFE-7v-bxY" customClass="SideMenuViewController" customModule="Social_Media_Basics" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zQW-wn-7qJ">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIT-YA-6Yf" userLabel="Side Menu User Email">
+                                <rect key="frame" x="91" y="110" width="173" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="iAF-n4-nl3">
+                                <rect key="frame" x="0.0" y="191" width="280" height="627"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="wHd-fS-Cvq">
+                                <rect key="frame" x="0.0" y="91" width="83" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="PkP-xe-5eX"/>
+                        <color key="backgroundColor" systemColor="systemMintColor"/>
+                    </view>
+                    <size key="freeformSize" width="280" height="852"/>
+                    <connections>
+                        <outlet property="headerImage" destination="wHd-fS-Cvq" id="bID-qO-HUo"/>
+                        <outlet property="headerLabel" destination="eIT-YA-6Yf" id="CCx-Fu-amU"/>
+                        <outlet property="roundedView" destination="zQW-wn-7qJ" id="nnj-BA-z3X"/>
+                        <outlet property="sideMenuLabel" destination="eIT-YA-6Yf" id="ZwA-tp-MS3"/>
+                        <outlet property="sideMenuTableView" destination="iAF-n4-nl3" id="DSV-7o-M0b"/>
+                        <outlet property="tableView" destination="iAF-n4-nl3" id="1uA-nn-Rvs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IBa-LN-MBz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="145" y="1011"/>
         </scene>
     </scenes>
     <resources>
+        <image name="person.crop.circle" catalog="system" width="128" height="123"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBrownColor">
             <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

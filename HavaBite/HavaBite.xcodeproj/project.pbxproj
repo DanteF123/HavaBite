@@ -25,6 +25,10 @@
 		7BC58CBB2C95E85100BA4B69 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7BC58CBA2C95E85100BA4B69 /* FirebaseFirestore */; };
 		7BC58CBD2C95FF9600BA4B69 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC58CBC2C95FF9600BA4B69 /* RegisterViewController.swift */; };
 		7BC58CBF2C9602B900BA4B69 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC58CBE2C9602B900BA4B69 /* User.swift */; };
+		7BC58CC22C98E82000BA4B69 /* SideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BC58CC12C98E82000BA4B69 /* SideMenuCell.xib */; };
+		7BC58CC42C98E85F00BA4B69 /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC58CC32C98E85F00BA4B69 /* SideMenuCell.swift */; };
+		7BC58CC62C98E8F000BA4B69 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC58CC52C98E8F000BA4B69 /* SideMenuViewController.swift */; };
+		7BC58CC82C9A31F900BA4B69 /* SideMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC58CC72C9A31F900BA4B69 /* SideMenuModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +66,10 @@
 		7BC58CAF2C95E4C100BA4B69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7BC58CBC2C95FF9600BA4B69 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7BC58CBE2C9602B900BA4B69 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		7BC58CC12C98E82000BA4B69 /* SideMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuCell.xib; sourceTree = "<group>"; };
+		7BC58CC32C98E85F00BA4B69 /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
+		7BC58CC52C98E8F000BA4B69 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		7BC58CC72C9A31F900BA4B69 /* SideMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				7BC58CBE2C9602B900BA4B69 /* User.swift */,
+				7BC58CC72C9A31F900BA4B69 /* SideMenuModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -167,10 +176,21 @@
 		7B6AB0D52C925B700023FE72 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7BC58CC02C98E7FD00BA4B69 /* Side Menu */,
 				7B6AB0D62C925EE80023FE72 /* WelcomeViewController.swift */,
 				7BC58CBC2C95FF9600BA4B69 /* RegisterViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		7BC58CC02C98E7FD00BA4B69 /* Side Menu */ = {
+			isa = PBXGroup;
+			children = (
+				7BC58CC12C98E82000BA4B69 /* SideMenuCell.xib */,
+				7BC58CC32C98E85F00BA4B69 /* SideMenuCell.swift */,
+				7BC58CC52C98E8F000BA4B69 /* SideMenuViewController.swift */,
+			);
+			path = "Side Menu";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,6 +307,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BC58CC22C98E82000BA4B69 /* SideMenuCell.xib in Resources */,
 				7B272DAE2C865EF3002DDD32 /* Assets.xcassets in Resources */,
 				7B272DB12C865EF3002DDD32 /* Base in Resources */,
 				7B272DAC2C865EF2002DDD32 /* Base in Resources */,
@@ -315,8 +336,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BC58CC62C98E8F000BA4B69 /* SideMenuViewController.swift in Sources */,
 				7B272DA92C865EF2002DDD32 /* ViewController.swift in Sources */,
+				7BC58CC42C98E85F00BA4B69 /* SideMenuCell.swift in Sources */,
 				7BC58CBD2C95FF9600BA4B69 /* RegisterViewController.swift in Sources */,
+				7BC58CC82C9A31F900BA4B69 /* SideMenuModel.swift in Sources */,
 				7BC58CBF2C9602B900BA4B69 /* User.swift in Sources */,
 				7B6AB0D72C925EE80023FE72 /* WelcomeViewController.swift in Sources */,
 				7B272DA52C865EF2002DDD32 /* AppDelegate.swift in Sources */,
