@@ -76,22 +76,24 @@
                         <outlet property="emailTextField" destination="82K-bv-Bsz" id="2Kq-Go-8mn"/>
                         <outlet property="passwordTextField" destination="HXU-CP-8pa" id="YJH-zj-Uxs"/>
                         <segue destination="ld4-6n-baT" kind="show" identifier="toRegister" id="qr9-xP-OfX"/>
+                        <segue destination="voN-cC-GAN" kind="show" identifier="logIntoMain" id="3U1-fK-M6h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="57.251908396946561" y="-2.1126760563380285"/>
         </scene>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="aLu-2c-rb3">
             <objects>
-                <viewController id="voN-cC-GAN" sceneMemberID="viewController">
+                <viewController id="voN-cC-GAN" customClass="MainViewController" customModule="HavaBite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yRd-fs-IHM">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="Yvp-dD-PTq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="7dm-pw-jpw"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jSb-ul-kW7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -222,8 +224,6 @@
                         <outlet property="headerImage" destination="wHd-fS-Cvq" id="bID-qO-HUo"/>
                         <outlet property="headerLabel" destination="eIT-YA-6Yf" id="CCx-Fu-amU"/>
                         <outlet property="roundedView" destination="zQW-wn-7qJ" id="nnj-BA-z3X"/>
-                        <outlet property="sideMenuLabel" destination="eIT-YA-6Yf" id="ZwA-tp-MS3"/>
-                        <outlet property="sideMenuTableView" destination="iAF-n4-nl3" id="DSV-7o-M0b"/>
                         <outlet property="tableView" destination="iAF-n4-nl3" id="1uA-nn-Rvs"/>
                     </connections>
                 </viewController>

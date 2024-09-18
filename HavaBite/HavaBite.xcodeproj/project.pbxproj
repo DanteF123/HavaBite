@@ -29,6 +29,7 @@
 		7BC58CC42C98E85F00BA4B69 /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC58CC32C98E85F00BA4B69 /* SideMenuCell.swift */; };
 		7BC58CC62C98E8F000BA4B69 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC58CC52C98E8F000BA4B69 /* SideMenuViewController.swift */; };
 		7BC58CC82C9A31F900BA4B69 /* SideMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC58CC72C9A31F900BA4B69 /* SideMenuModel.swift */; };
+		7BC58CCA2C9A344500BA4B69 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC58CC92C9A344500BA4B69 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		7BC58CC32C98E85F00BA4B69 /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
 		7BC58CC52C98E8F000BA4B69 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		7BC58CC72C9A31F900BA4B69 /* SideMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuModel.swift; sourceTree = "<group>"; };
+		7BC58CC92C9A344500BA4B69 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 				7B272DAF2C865EF3002DDD32 /* LaunchScreen.storyboard */,
 				7B272DB22C865EF3002DDD32 /* Info.plist */,
 				7BC58CAF2C95E4C100BA4B69 /* GoogleService-Info.plist */,
+				7BC58CC92C9A344500BA4B69 /* MainViewController.swift */,
 			);
 			path = HavaBite;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				7B6AB0D72C925EE80023FE72 /* WelcomeViewController.swift in Sources */,
 				7B272DA52C865EF2002DDD32 /* AppDelegate.swift in Sources */,
 				7B272DA72C865EF2002DDD32 /* SceneDelegate.swift in Sources */,
+				7BC58CCA2C9A344500BA4B69 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

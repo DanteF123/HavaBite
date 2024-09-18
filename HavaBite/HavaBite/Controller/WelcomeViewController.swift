@@ -23,7 +23,9 @@ class WelcomeViewController: UIViewController {
     }
     
     @IBAction func logInButtonClicked(_ sender: Any) {
-        logIn(email: emailTextField.text ?? "", password: passwordTextField.text ?? "")
+        if logIn(email: emailTextField.text ?? "", password: passwordTextField.text ?? ""){
+            performSegue(withIdentifier: "logIntoMain", sender: self)
+        }
     }
     
 }
