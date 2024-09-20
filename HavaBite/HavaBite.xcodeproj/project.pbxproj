@@ -30,6 +30,8 @@
 		7BC58CC62C98E8F000BA4B69 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC58CC52C98E8F000BA4B69 /* SideMenuViewController.swift */; };
 		7BC58CC82C9A31F900BA4B69 /* SideMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC58CC72C9A31F900BA4B69 /* SideMenuModel.swift */; };
 		7BC58CCA2C9A344500BA4B69 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC58CC92C9A344500BA4B69 /* MainViewController.swift */; };
+		7BC58CCC2C9B897700BA4B69 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC58CCB2C9B897700BA4B69 /* SearchViewController.swift */; };
+		7BC58CCE2C9B8B1A00BA4B69 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC58CCD2C9B8B1A00BA4B69 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,8 @@
 		7BC58CC52C98E8F000BA4B69 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		7BC58CC72C9A31F900BA4B69 /* SideMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuModel.swift; sourceTree = "<group>"; };
 		7BC58CC92C9A344500BA4B69 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		7BC58CCB2C9B897700BA4B69 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		7BC58CCD2C9B8B1A00BA4B69 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +196,8 @@
 				7BC58CC12C98E82000BA4B69 /* SideMenuCell.xib */,
 				7BC58CC32C98E85F00BA4B69 /* SideMenuCell.swift */,
 				7BC58CC52C98E8F000BA4B69 /* SideMenuViewController.swift */,
+				7BC58CCB2C9B897700BA4B69 /* SearchViewController.swift */,
+				7BC58CCD2C9B8B1A00BA4B69 /* MapViewController.swift */,
 			);
 			path = "Side Menu";
 			sourceTree = "<group>";
@@ -340,11 +346,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BC58CC62C98E8F000BA4B69 /* SideMenuViewController.swift in Sources */,
+				7BC58CCC2C9B897700BA4B69 /* SearchViewController.swift in Sources */,
 				7B272DA92C865EF2002DDD32 /* ViewController.swift in Sources */,
 				7BC58CC42C98E85F00BA4B69 /* SideMenuCell.swift in Sources */,
 				7BC58CBD2C95FF9600BA4B69 /* RegisterViewController.swift in Sources */,
 				7BC58CC82C9A31F900BA4B69 /* SideMenuModel.swift in Sources */,
 				7BC58CBF2C9602B900BA4B69 /* User.swift in Sources */,
+				7BC58CCE2C9B8B1A00BA4B69 /* MapViewController.swift in Sources */,
 				7B6AB0D72C925EE80023FE72 /* WelcomeViewController.swift in Sources */,
 				7B272DA52C865EF2002DDD32 /* AppDelegate.swift in Sources */,
 				7B272DA72C865EF2002DDD32 /* SceneDelegate.swift in Sources */,

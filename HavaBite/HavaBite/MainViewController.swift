@@ -77,7 +77,7 @@ class MainViewController: UIViewController {
         
         
         // Default Main View Controller
-        showViewController(viewController: UINavigationController.self, storyboardId: "HelloNavID")
+        showViewController(viewController: UINavigationController.self, storyboardId: "MapNavID")
         
     }
     // Keep the state of the side menu (expanded or collapse) in rotation
@@ -94,6 +94,12 @@ class MainViewController: UIViewController {
 extension MainViewController: SideMenuViewControllerDelegate {
     func selectedCell(_ row: Int) {
         switch row {
+        case 0:
+            // Home
+            self.showViewController(viewController: UINavigationController.self, storyboardId: "MapNavID")
+        case 1:
+            // Search
+            self.showViewController(viewController: UINavigationController.self, storyboardId: "SearchNavID")
 
         default:
             break
