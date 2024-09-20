@@ -106,4 +106,3 @@ extension SideMenuViewController: UITableViewDataSource {
         }
     }
 }
-

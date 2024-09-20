@@ -162,6 +162,7 @@ extension MainViewController: SideMenuViewControllerDelegate {
         }, completion: completion)
     }
 }
+
 extension UIViewController {
     
     // With this extension you can access the MainViewController from the child view controllers.

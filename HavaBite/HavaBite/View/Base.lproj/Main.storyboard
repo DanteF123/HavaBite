@@ -208,10 +208,10 @@
             </objects>
             <point key="canvasLocation" x="2921" y="-423"/>
         </scene>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="KdB-dM-AcJ">
             <objects>
-                <viewController id="JHE-YI-Ugi" sceneMemberID="viewController">
+                <viewController id="JHE-YI-Ugi" customClass="MapViewController" customModule="HavaBite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eJO-ev-PgR">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -225,7 +225,12 @@
                         <viewLayoutGuide key="safeArea" id="VPL-QF-BZh"/>
                         <color key="backgroundColor" systemColor="systemMintColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="2vi-KP-nLg"/>
+                    <navigationItem key="navigationItem" id="2vi-KP-nLg">
+                        <barButtonItem key="leftBarButtonItem" title="Side Menu Button" image="line.3.horizontal" catalog="system" id="Uzg-tr-A9L"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="sideMenuButton" destination="Uzg-tr-A9L" id="8Lv-3e-rhc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="75G-81-KhD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -272,7 +277,12 @@
                         <viewLayoutGuide key="safeArea" id="u81-ue-W2X"/>
                         <color key="backgroundColor" systemColor="systemMintColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="vyS-uV-TEX"/>
+                    <navigationItem key="navigationItem" id="vyS-uV-TEX">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="line.3.horizontal" catalog="system" id="TcK-r5-0hy" userLabel="Side Menu Button"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="sideMenuButton" destination="TcK-r5-0hy" id="7lc-gz-E2n"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E1F-gd-dqu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -320,6 +330,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
