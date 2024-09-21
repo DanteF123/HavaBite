@@ -100,6 +100,11 @@ extension MainViewController: SideMenuViewControllerDelegate {
         case 1:
             // Search
             self.showViewController(viewController: UINavigationController.self, storyboardId: "SearchNavID")
+            
+        case 3:
+            //Log out
+            signOutUser()
+            performSegue(withIdentifier: "signOut", sender: self)
 
         default:
             break
@@ -107,6 +112,16 @@ extension MainViewController: SideMenuViewControllerDelegate {
         
         // Collapse side menu with animation
         DispatchQueue.main.async { self.sideMenuState(expanded: false) }
+    }
+    
+    func signOutUser() {
+        do {
+            try Auth.auth().signOut()
+            print("User signed out successfully.")
+            // Optionally, you can navigate the user to a different screen or update the UI
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
     }
     
     

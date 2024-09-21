@@ -27,10 +27,10 @@ class SideMenuViewController: UIViewController{
     let currentUser = Auth.auth().currentUser
     
     var menu: [SideMenuModel] = [
-        SideMenuModel(icon: UIImage(systemName: "house.fill")!, title: "Hello"),
+        SideMenuModel(icon: UIImage(systemName: "globe.americas.fill")!, title: "Map"),
         SideMenuModel(icon: UIImage(systemName: "magnifyingglass")!, title: "Search"),
-        SideMenuModel(icon: UIImage(systemName: "figure.walk")!, title: "Log Out"),
-        SideMenuModel(icon: UIImage(systemName: "person.fill")!, title: "Friends")
+        SideMenuModel(icon: UIImage(systemName: "person.fill")!, title: "Friends"),
+        SideMenuModel(icon: UIImage(systemName: "figure.walk")!, title: "Log Out")
         
     ]
     

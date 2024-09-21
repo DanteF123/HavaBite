@@ -34,7 +34,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdB-Qz-0Go">
-                                <rect key="frame" x="155" y="725" width="82" height="35"/>
+                                <rect key="frame" x="157" y="751" width="82" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Sign up"/>
@@ -68,11 +68,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Dont have an account?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ak4-vX-zZ1">
+                                <rect key="frame" x="124" y="709" width="176" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemMintColor"/>
                         <color key="tintColor" systemColor="systemBrownColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="2ex-XA-ESu"/>
                     <connections>
                         <outlet property="emailTextField" destination="82K-bv-Bsz" id="2Kq-Go-8mn"/>
                         <outlet property="passwordTextField" destination="HXU-CP-8pa" id="YJH-zj-Uxs"/>
@@ -95,10 +102,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="7dm-pw-jpw"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="signOut" modalPresentationStyle="fullScreen" id="imO-7q-gwH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jSb-ul-kW7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1497" y="488"/>
+            <point key="canvasLocation" x="1448" y="344"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="ce4-4K-9q2">
@@ -291,7 +301,7 @@
         <!--Side Menu View Controller-->
         <scene sceneID="Y4V-yf-zDS">
             <objects>
-                <viewController storyboardIdentifier="SideMenuID" id="fFE-7v-bxY" customClass="SideMenuViewController" customModule="Social_Media_Basics" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SideMenuID" id="fFE-7v-bxY" customClass="SideMenuViewController" customModule="HavaBite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zQW-wn-7qJ">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -330,7 +340,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
+        <image name="line.3.horizontal" catalog="system" width="32" height="32"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
