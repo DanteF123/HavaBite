@@ -8,12 +8,14 @@
 import Foundation
 
 struct User{
-    let name: String
+    let first_name: String
+    let last_name: String
     let email : String
     let id : String
     
-    init(name: String,email: String, id: String) {
-        self.name = name
+    init(first_name: String, last_name: String, email: String, id: String) {
+        self.first_name = first_name
+        self.last_name = last_name
         self.email = email
         self.id = id
     }

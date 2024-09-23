@@ -14,9 +14,9 @@
             filePath = "HavaBiteTests/HavaBiteTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "testSignUpHappyPath()"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "testAsyncSignUpSuccess()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

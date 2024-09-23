@@ -291,6 +291,8 @@
                         <barButtonItem key="leftBarButtonItem" title="Item" image="line.3.horizontal" catalog="system" id="TcK-r5-0hy" userLabel="Side Menu Button"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="FPn-K7-0x6" id="p6y-jI-qgr"/>
+                        <outlet property="searchResults" destination="Qpw-wf-hgN" id="m5y-ZU-Ojn"/>
                         <outlet property="sideMenuButton" destination="TcK-r5-0hy" id="7lc-gz-E2n"/>
                     </connections>
                 </viewController>
@@ -336,20 +338,20 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IBa-LN-MBz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="145" y="1011"/>
+            <point key="canvasLocation" x="3075" y="1380"/>
         </scene>
     </scenes>
     <resources>
-        <image name="line.3.horizontal" catalog="system" width="32" height="32"/>
+        <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBrownColor">
-            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemMintColor">
-            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
