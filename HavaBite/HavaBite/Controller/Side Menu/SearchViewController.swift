@@ -125,7 +125,7 @@ extension SearchViewController {
 
         let touchPoint = gestureRecognizer.location(in: self.searchResults)
         if let indexPath = searchResults.indexPathForRow(at: touchPoint) {
-
+            populateUserDetails(forRowAt: indexPath)
         }
         
     }
@@ -135,27 +135,27 @@ extension SearchViewController {
         present(alert, animated: true, completion: nil)
     }
     
-//    func populateUserDetails(forRowAt indexPath: IndexPath) {
-//        let selectedUser = filteredUsers[indexPath.row]
-//        print("selected user is \(selectedUser.email)")
-//        
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        if let userDetailVC = storyboard.instantiateViewController(withIdentifier: "UserDetailsID") as? UserDetailsViewController {
-//            userDetailVC.user = selectedUser
-//            
-//            // Set the modal presentation style
-//            userDetailVC.modalPresentationStyle = .pageSheet
-//            
-//            if let sheet = userDetailVC.sheetPresentationController {
-//                // Set the preferred content size
-//                sheet.detents = [.medium()] // Medium covers roughly half the screen
-//                sheet.prefersGrabberVisible = true // Optional: Shows a grabber at the top of the sheet
-//            }
-//            
-//            self.present(userDetailVC, animated: true)
-//        } else {
-//            print("Error: Could not instantiate UserDetailsViewController")
-//        }
-//    }
+    func populateUserDetails(forRowAt indexPath: IndexPath) {
+        let selectedUser = filteredUsers[indexPath.row]
+        print("selected user is \(selectedUser.email)")
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let userDetailVC = storyboard.instantiateViewController(withIdentifier: "UserDetailsID") as? UserDetailsViewController {
+            userDetailVC.user = selectedUser
+            
+            // Set the modal presentation style
+            userDetailVC.modalPresentationStyle = .pageSheet
+            
+            if let sheet = userDetailVC.sheetPresentationController {
+                // Set the preferred content size
+                sheet.detents = [.medium()] // Medium covers roughly half the screen
+                sheet.prefersGrabberVisible = true // Optional: Shows a grabber at the top of the sheet
+            }
+            
+            self.present(userDetailVC, animated: true)
+        } else {
+            print("Error: Could not instantiate UserDetailsViewController")
+        }
+    }
 }
 
