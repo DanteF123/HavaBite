@@ -25,7 +25,11 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchResults.dataSource = self
-        searchResults.register(UITableViewCell.self, forCellReuseIdentifier: "SearchCell")
+        
+        //register cell
+        self.searchResults.register(SearchCell.nib, forCellReuseIdentifier: SearchCell.identifier)
+        searchResults.backgroundColor = #colorLiteral(red: 0.5989779234, green: 0.825442493, blue: 0.8293678164, alpha: 1)
+
         searchBar.delegate = self // Set the search bar delegate
         getAllUsers()
         addTapGestureRecognizer()
@@ -73,8 +77,13 @@ extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let listItem = filteredUsers[indexPath.row].email
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath)
-        cell.textLabel?.text = listItem
+        
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath)
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchCell.identifier, for: indexPath) as? SearchCell else { fatalError("xib doesn't exist") }
+        
+        cell.emailLabel.text = listItem
+//        cell.textLabel?.text = listItem
         return cell
     }
 }
