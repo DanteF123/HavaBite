@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B1EB9452CA357EE005A83D0 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1EB9442CA357EE005A83D0 /* UserDetailsViewController.swift */; };
+		7B1EB9482CA35D77005A83D0 /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B1EB9472CA35D77005A83D0 /* SearchCell.xib */; };
+		7B1EB94A2CA35D95005A83D0 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1EB9492CA35D95005A83D0 /* SearchCell.swift */; };
 		7B272DA52C865EF2002DDD32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B272DA42C865EF2002DDD32 /* AppDelegate.swift */; };
 		7B272DA72C865EF2002DDD32 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B272DA62C865EF2002DDD32 /* SceneDelegate.swift */; };
 		7B272DA92C865EF2002DDD32 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B272DA82C865EF2002DDD32 /* ViewController.swift */; };
@@ -52,6 +55,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7B1EB9442CA357EE005A83D0 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
+		7B1EB9472CA35D77005A83D0 /* SearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
+		7B1EB9492CA35D95005A83D0 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		7B272DA12C865EF2002DDD32 /* HavaBite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HavaBite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B272DA42C865EF2002DDD32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7B272DA62C865EF2002DDD32 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +114,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B1EB9462CA35C7E005A83D0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7BC58CC12C98E82000BA4B69 /* SideMenuCell.xib */,
+				7BC58CC32C98E85F00BA4B69 /* SideMenuCell.swift */,
+				7B1EB9472CA35D77005A83D0 /* SearchCell.xib */,
+				7B1EB9492CA35D95005A83D0 /* SearchCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		7B272D982C865EF2002DDD32 = {
 			isa = PBXGroup;
 			children = (
@@ -193,11 +210,11 @@
 		7BC58CC02C98E7FD00BA4B69 /* Side Menu */ = {
 			isa = PBXGroup;
 			children = (
-				7BC58CC12C98E82000BA4B69 /* SideMenuCell.xib */,
-				7BC58CC32C98E85F00BA4B69 /* SideMenuCell.swift */,
+				7B1EB9462CA35C7E005A83D0 /* Cells */,
 				7BC58CC52C98E8F000BA4B69 /* SideMenuViewController.swift */,
 				7BC58CCB2C9B897700BA4B69 /* SearchViewController.swift */,
 				7BC58CCD2C9B8B1A00BA4B69 /* MapViewController.swift */,
+				7B1EB9442CA357EE005A83D0 /* UserDetailsViewController.swift */,
 			);
 			path = "Side Menu";
 			sourceTree = "<group>";
@@ -319,6 +336,7 @@
 				7BC58CC22C98E82000BA4B69 /* SideMenuCell.xib in Resources */,
 				7B272DAE2C865EF3002DDD32 /* Assets.xcassets in Resources */,
 				7B272DB12C865EF3002DDD32 /* Base in Resources */,
+				7B1EB9482CA35D77005A83D0 /* SearchCell.xib in Resources */,
 				7B272DAC2C865EF2002DDD32 /* Base in Resources */,
 				7BC58CB02C95E4C100BA4B69 /* GoogleService-Info.plist in Resources */,
 			);
@@ -348,11 +366,13 @@
 				7BC58CC62C98E8F000BA4B69 /* SideMenuViewController.swift in Sources */,
 				7BC58CCC2C9B897700BA4B69 /* SearchViewController.swift in Sources */,
 				7B272DA92C865EF2002DDD32 /* ViewController.swift in Sources */,
+				7B1EB94A2CA35D95005A83D0 /* SearchCell.swift in Sources */,
 				7BC58CC42C98E85F00BA4B69 /* SideMenuCell.swift in Sources */,
 				7BC58CBD2C95FF9600BA4B69 /* RegisterViewController.swift in Sources */,
 				7BC58CC82C9A31F900BA4B69 /* SideMenuModel.swift in Sources */,
 				7BC58CBF2C9602B900BA4B69 /* User.swift in Sources */,
 				7BC58CCE2C9B8B1A00BA4B69 /* MapViewController.swift in Sources */,
+				7B1EB9452CA357EE005A83D0 /* UserDetailsViewController.swift in Sources */,
 				7B6AB0D72C925EE80023FE72 /* WelcomeViewController.swift in Sources */,
 				7B272DA52C865EF2002DDD32 /* AppDelegate.swift in Sources */,
 				7B272DA72C865EF2002DDD32 /* SceneDelegate.swift in Sources */,
