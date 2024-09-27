@@ -23,8 +23,11 @@ class RegisterViewController: UIViewController {
      
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true) // Dismisses the keyboard when tapping outside of text fields
     }
     
     @IBAction func registerButtonClicked(_ sender: Any) {

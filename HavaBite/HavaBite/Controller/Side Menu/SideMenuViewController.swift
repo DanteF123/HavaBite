@@ -46,6 +46,9 @@ class SideMenuViewController: UIViewController{
         self.tableView.backgroundColor = #colorLiteral(red: 0.5989779234, green: 0.825442493, blue: 0.8293678164, alpha: 1)
         self.tableView.separatorStyle = .none
         
+        //Adding accessibilityIdentifier
+        tableView.accessibilityIdentifier = "SideMenuTable"
+        
         // Set Highlighted Cell
         DispatchQueue.main.async {
             let defaultRow = IndexPath(row: self.defaultHighlightedCell, section: 0)

@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-class WelcomeViewController: UIViewController {
+class WelcomeViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailTextField: UITextField!
     
@@ -16,6 +16,20 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //setting delegates to self so that keyboard is dismissed when return is tapped.
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()  // Dismiss the keyboard
+        return true
+    }
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true) // Dismisses the keyboard when tapping outside of text fields
     }
     
     @IBAction func signUpButtonClicked(_ sender: UIButton) {
