@@ -90,35 +90,39 @@ extension SearchViewController: UITableViewDataSource {
 
 extension SearchViewController {
     func getAllUsers() {
-        let db = Firestore.firestore()
         let userRef = db.collection("users")
         
-        userRef.getDocuments(completion: { querySnapshot, error in
-            if let error = error {
-                print("Error getting users \(error)")
-            } else {
-                for i in querySnapshot!.documents {
-                    print(i)
-                    if i.documentID != self.currentUser!.uid {
-                        let data = i.data()
-                        let user_email = data["email"]
-                        let user_first_name = data["first_name"]
-                        let user_last_name = data["last_name"]
-                        let id = i.documentID
-                        
-                        let user = User(first_name: user_first_name as? String ?? "",
-                                        last_name: user_last_name as? String ?? "",
-                                        email: user_email as? String ?? "",
-                                        id: id)
-                        self.users.append(user)
+        // Use the completion handler to get the user's friends
+        getUserFriends { userFriends in
+            print(userFriends)
+            
+            userRef.getDocuments(completion: { querySnapshot, error in
+                if let error = error {
+                    print("Error getting users: \(error)")
+                } else {
+                    for i in querySnapshot!.documents {
+                        // Exclude the signed-in user and their friends from the list
+                        if i.documentID != self.currentUser!.uid && !userFriends.contains(i.documentID) {
+                            let data = i.data()
+                            let user_email = data["email"]
+                            let user_first_name = data["first_name"]
+                            let user_last_name = data["last_name"]
+                            let id = i.documentID
+                            
+                            let user = User(first_name: user_first_name as? String ?? "",
+                                            last_name: user_last_name as? String ?? "",
+                                            email: user_email as? String ?? "",
+                                            id: id)
+                            self.users.append(user)
+                        }
+                    }
+                    DispatchQueue.main.async {
+                        self.filteredUsers = self.users // Initialize filtered users
+                        self.searchResults.reloadData()
                     }
                 }
-                DispatchQueue.main.async {
-                    self.filteredUsers = self.users // Initialize filtered users
-                    self.searchResults.reloadData()
-                }
-            }
-        })
+            })
+        }
     }
 }
 
@@ -168,3 +172,23 @@ extension SearchViewController {
     }
 }
 
+extension SearchViewController {
+    //method to obtain user's friends. Returns a hash set for efficient search.
+    func getUserFriends(completion: @escaping (Set<String>) -> Void) {
+        var friendSet: Set<String> = []
+        let friendsRef = db.collection("users").document(currentUser!.uid).collection("users")
+        
+        friendsRef.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting friends: \(error)")
+                completion(friendSet) // Return empty set in case of error
+            } else {
+                for document in querySnapshot!.documents {
+                    let id = document.documentID
+                    friendSet.insert(id)
+                }
+                completion(friendSet) // Return the populated set after documents are retrieved
+            }
+        }
+    }
+}

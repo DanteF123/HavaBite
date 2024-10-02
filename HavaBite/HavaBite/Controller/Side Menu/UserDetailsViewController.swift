@@ -44,7 +44,13 @@ extension UserDetailsViewController{
             if let error = error {
                 print("Error adding post: \(error)")
             } else {
-                print("Friend added successfully")
+                let message = "Friend Added"
+                let alert = UIAlertController(title: "Success", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+                    // Navigate to Hello after the alert is dismissed
+//                        self.performSegue(withIdentifier: "registerToHello", sender: self)
+                })
+                self.present(alert, animated: true, completion: nil)
             }
         }
         
