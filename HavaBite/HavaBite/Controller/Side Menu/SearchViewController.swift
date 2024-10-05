@@ -93,8 +93,7 @@ extension SearchViewController {
         let userRef = db.collection("users")
         
         // Use the completion handler to get the user's friends
-        getUserFriends { userFriends in
-            print(userFriends)
+        let userFriends = UserSession.shared.friends
             
             userRef.getDocuments(completion: { querySnapshot, error in
                 if let error = error {
@@ -124,7 +123,7 @@ extension SearchViewController {
             })
         }
     }
-}
+
 
 
 extension SearchViewController {
@@ -168,27 +167,6 @@ extension SearchViewController {
             self.present(userDetailVC, animated: true)
         } else {
             print("Error: Could not instantiate UserDetailsViewController")
-        }
-    }
-}
-
-extension SearchViewController {
-    //method to obtain user's friends. Returns a hash set for efficient search.
-    func getUserFriends(completion: @escaping (Set<String>) -> Void) {
-        var friendSet: Set<String> = []
-        let friendsRef = db.collection("users").document(currentUser!.uid).collection("users")
-        
-        friendsRef.getDocuments { (querySnapshot, error) in
-            if let error = error {
-                print("Error getting friends: \(error)")
-                completion(friendSet) // Return empty set in case of error
-            } else {
-                for document in querySnapshot!.documents {
-                    let id = document.documentID
-                    friendSet.insert(id)
-                }
-                completion(friendSet) // Return the populated set after documents are retrieved
-            }
         }
     }
 }

@@ -37,8 +37,12 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func logInButtonClicked(_ sender: Any) {
-        if logIn(email: emailTextField.text ?? "", password: passwordTextField.text ?? ""){
-            performSegue(withIdentifier: "logIntoMain", sender: self)
+        logIn(email: emailTextField.text ?? "", password: passwordTextField.text ?? "") { success in
+            if success {
+                self.performSegue(withIdentifier: "logIntoMain", sender: self)
+            } else {
+                print("Login failed")
+            }
         }
     }
     
@@ -46,33 +50,31 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
 
 extension WelcomeViewController {
     
-    func logIn(email:String, password:String) -> Bool{
-        if email != "" && password != ""{
-            Auth.auth().signIn(withEmail: email, password: password){authResult, error in if let e = error{
-                
+    func logIn(email: String, password: String, completion: @escaping (Bool) -> Void) {
+        if email != "" && password != "" {
+            Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+                if let e = error {
                     let message = e.localizedDescription
                     let alert = UIAlertController(title: "Oops", message: message, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Try Again", style: .default))
                     self.present(alert, animated: true, completion: nil)
-                
-            }else{
-                let user = Auth.auth().currentUser
-                print(user!.email!)
-                
+                    completion(false)
+                } else if let firebaseUser = authResult?.user {
+                    // Initialize the UserSession singleton after successful login
+                    UserSession.shared.initializeLoggedInUser(with: firebaseUser) {
+                        // Only after the session is properly set up do we proceed
+                        completion(true)
+                    }
+                } else {
+                    completion(false)
+                }
             }
-        }
-        return true
-            
-        }
-        else{
+        } else {
             let message = "Please ensure all fields are filled."
             let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
-                // Navigate to Hello after the alert is dismissed
-//                self.performSegue(withIdentifier: "registerToHello", sender: self)
-            })
+            alert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in })
             self.present(alert, animated: true, completion: nil)
-            return false
+            completion(false)
         }
     }
     
