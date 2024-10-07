@@ -23,6 +23,7 @@
 		7B7D48082CAE0BF90098D2BD /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D48072CAE0BF90098D2BD /* UserSession.swift */; };
 		7B7D480A2CB1D39F0098D2BD /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7D48092CB1D39F0098D2BD /* FriendCell.xib */; };
 		7B7D480C2CB1D3E20098D2BD /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D480B2CB1D3E20098D2BD /* FriendCell.swift */; };
+		7B7D480E2CB35DED0098D2BD /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D480D2CB35DED0098D2BD /* FriendsViewController.swift */; };
 		7BC58CB02C95E4C100BA4B69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BC58CAF2C95E4C100BA4B69 /* GoogleService-Info.plist */; };
 		7BC58CB32C95E85100BA4B69 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 7BC58CB22C95E85100BA4B69 /* FirebaseAnalytics */; };
 		7BC58CB52C95E85100BA4B69 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 7BC58CB42C95E85100BA4B69 /* FirebaseAppDistribution-Beta */; };
@@ -78,6 +79,7 @@
 		7B7D48072CAE0BF90098D2BD /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		7B7D48092CB1D39F0098D2BD /* FriendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
 		7B7D480B2CB1D3E20098D2BD /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		7B7D480D2CB35DED0098D2BD /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		7BC58CAF2C95E4C100BA4B69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7BC58CBC2C95FF9600BA4B69 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7BC58CBE2C9602B900BA4B69 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				7BC58CCB2C9B897700BA4B69 /* SearchViewController.swift */,
 				7BC58CCD2C9B8B1A00BA4B69 /* MapViewController.swift */,
 				7B1EB9442CA357EE005A83D0 /* UserDetailsViewController.swift */,
+				7B7D480D2CB35DED0098D2BD /* FriendsViewController.swift */,
 			);
 			path = "Side Menu";
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				7BC58CCC2C9B897700BA4B69 /* SearchViewController.swift in Sources */,
 				7B272DA92C865EF2002DDD32 /* ViewController.swift in Sources */,
 				7B7D480C2CB1D3E20098D2BD /* FriendCell.swift in Sources */,
+				7B7D480E2CB35DED0098D2BD /* FriendsViewController.swift in Sources */,
 				7B1EB94A2CA35D95005A83D0 /* SearchCell.swift in Sources */,
 				7BC58CC42C98E85F00BA4B69 /* SideMenuCell.swift in Sources */,
 				7BC58CBD2C95FF9600BA4B69 /* RegisterViewController.swift in Sources */,

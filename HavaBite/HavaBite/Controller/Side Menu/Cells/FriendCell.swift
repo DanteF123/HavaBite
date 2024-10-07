@@ -6,3 +6,16 @@
 //
 
 import Foundation
+import UIKit
+
+class FriendCell: UITableViewCell{
+    
+    @IBOutlet weak var emailLabel: UIView!
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.backgroundColor = .clear
+    }
+    @IBAction func removeButtonClick(_ sender: UIButton) {
+    }
+}

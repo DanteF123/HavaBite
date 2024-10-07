@@ -8,7 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="gyq-G4-qCf">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="gyq-G4-qCf" customClass="FriendCell" customModule="HavaBite" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gyq-G4-qCf" id="Feg-xn-RSY">
@@ -27,10 +27,16 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" image="person.crop.circle.badge.minus" catalog="system"/>
+                        <connections>
+                            <action selector="removeButtonClick:" destination="gyq-G4-qCf" eventType="touchUpInside" id="jMr-L5-9bT"/>
+                        </connections>
                     </button>
                 </subviews>
                 <color key="backgroundColor" red="0.53617355050000004" green="0.79000008109999997" blue="0.79000008109999997" alpha="1" colorSpace="calibratedRGB"/>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="emailLabel" destination="Feg-xn-RSY" id="lXf-Sy-wQx"/>
+            </connections>
             <point key="canvasLocation" x="41.984732824427482" y="-3.5211267605633805"/>
         </tableViewCell>
     </objects>
