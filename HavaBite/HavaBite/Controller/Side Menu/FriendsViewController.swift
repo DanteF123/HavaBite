@@ -57,13 +57,14 @@ extension FriendsViewController: FriendCellDelegate {
         }
         
         cell.userEmail.text = listItem
-        
+        cell.delegate = self  // Set the delegate to FriendsViewController
         
         return cell
     }
     
     
     func didTapRemoveButton(on cell: FriendCell) {
+        print("Button clicked")
         // Remove friend from Firestore
         guard let indexPath = friendsList.indexPath(for: cell) else { return }
         let friendToRemove = friends[indexPath.row]
