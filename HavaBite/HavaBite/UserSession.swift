@@ -8,6 +8,8 @@ class UserSession {
     var loggedInUser: User? // A property to store the logged-in user
     var friends: Set<String> = [] // A set to store the logged-in user's friends
     let db = Firestore.firestore()
+    let currentUser = Auth.auth().currentUser
+    
     
     private init() {}
     

@@ -35,7 +35,7 @@
                 <color key="backgroundColor" red="0.53617355050000004" green="0.79000008109999997" blue="0.79000008109999997" alpha="1" colorSpace="calibratedRGB"/>
             </tableViewCellContentView>
             <connections>
-                <outlet property="emailLabel" destination="Feg-xn-RSY" id="lXf-Sy-wQx"/>
+                <outlet property="userEmail" destination="oA8-N2-txP" id="8gn-Te-nqR"/>
             </connections>
             <point key="canvasLocation" x="41.984732824427482" y="-3.5211267605633805"/>
         </tableViewCell>

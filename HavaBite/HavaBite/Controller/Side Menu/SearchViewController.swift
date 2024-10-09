@@ -20,7 +20,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     var users: [User] = []
     var filteredUsers: [User] = [] // Add filtered users array
     let db = Firestore.firestore()
-    let currentUser = Auth.auth().currentUser
+    let currentUser = UserSession.shared.currentUser
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
