@@ -29,6 +29,8 @@ class FriendsViewController: UIViewController, UITableViewDataSource {
         //register cell
         self.friendsList.register(FriendCell.nib, forCellReuseIdentifier: FriendCell.identifier)
         
+        addTapGestureRecognizer()
+        
         populateFriends { [weak self] users, error in
             if let error = error {
                 print("Error populating friends: \(error)")
@@ -153,4 +155,48 @@ extension FriendsViewController{
         }
     }
     
+}
+
+extension FriendsViewController{
+    func addTapGestureRecognizer(){
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        friendsList.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func handleTap(gestureRecognizer: UITapGestureRecognizer) {
+
+        let touchPoint = gestureRecognizer.location(in: self.friendsList)
+        if let indexPath = friendsList.indexPathForRow(at: touchPoint) {
+            populateUserDetails(forRowAt: indexPath)
+        }
+        
+    }
+    
+    func presentDeleteActionSheet(forRowAt indexPath: IndexPath) {
+        let alert = UIAlertController(title: nil, message: "Are you sure you want to delete this item?", preferredStyle: .actionSheet)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func populateUserDetails(forRowAt indexPath: IndexPath) {
+        let selectedUser = friends[indexPath.row]
+        print("selected user is \(selectedUser.email)")
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let userDetailVC = storyboard.instantiateViewController(withIdentifier: "UserDetailsID") as? UserDetailsViewController {
+            userDetailVC.user = selectedUser
+            
+            // Set the modal presentation style
+            userDetailVC.modalPresentationStyle = .pageSheet
+            
+            if let sheet = userDetailVC.sheetPresentationController {
+                // Set the preferred content size
+                sheet.detents = [.medium()] // Medium covers roughly half the screen
+                sheet.prefersGrabberVisible = true // Optional: Shows a grabber at the top of the sheet
+            }
+            
+            self.present(userDetailVC, animated: true)
+        } else {
+            print("Error: Could not instantiate UserDetailsViewController")
+        }
+    }
 }

@@ -113,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jSb-ul-kW7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1448" y="344"/>
+            <point key="canvasLocation" x="1497" y="451"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="ce4-4K-9q2">
@@ -223,6 +223,7 @@
                         <outlet property="firstnameText" destination="VDf-3F-pwQ" id="qBk-tT-7Fz"/>
                         <outlet property="lastnameText" destination="j1I-c0-rkC" id="HUd-tB-XYa"/>
                         <outlet property="passwordText" destination="4iv-DE-GCQ" id="vxL-kP-JSR"/>
+                        <segue destination="voN-cC-GAN" kind="show" identifier="registerToMain" id="lpE-CW-Nwy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vgv-vh-Gvn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -264,7 +265,7 @@
         <!--Friends View Controller-->
         <scene sceneID="L1Q-5T-OHw">
             <objects>
-                <viewController id="SHZ-ID-LZz" customClass="FriendsViewController" customModule="HavaBite" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FriendsViewController" id="SHZ-ID-LZz" customClass="FriendsViewController" customModule="HavaBite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qeT-5S-aYO">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -279,7 +280,7 @@
                         <color key="backgroundColor" systemColor="systemMintColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="9wr-eF-lMX">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="line.3.horizontal" catalog="system" id="Vaq-N4-tor"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="line.3.horizontal" catalog="system" id="Vaq-N4-tor" userLabel="Side Menu Button"/>
                     </navigationItem>
                     <connections>
                         <outlet property="friendsList" destination="ifC-Fo-4zV" id="OoG-U5-xRK"/>
@@ -458,6 +459,9 @@
             <point key="canvasLocation" x="4093.8931297709923" y="1402.8169014084508"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="3U1-fK-M6h"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
@@ -466,10 +470,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBrownColor">
-            <color red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemMintColor">
-            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
