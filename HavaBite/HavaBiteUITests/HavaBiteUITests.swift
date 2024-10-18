@@ -67,7 +67,7 @@ final class HavaBiteUITests: XCTestCase {
 
         let emailTextField = app.textFields["registerEmailText"]
         emailTextField.tap()
-        emailTextField.typeText("john4@example.com")
+        emailTextField.typeText("john6@example.com")
         backgroundElement.tap()
 
         let passwordTextField = app.textFields["registerPasswordText"]
@@ -141,6 +141,9 @@ final class HavaBiteUITests: XCTestCase {
         app.keyboards.buttons["Return"].tap()
 
         logInButton.tap()
+        
+        //Sleep so the system can communicate with backend and load the UI
+        Thread.sleep(forTimeInterval: 5)
 
         // Open side menu
         let sideMenuButton = app.buttons["Side Menu Button"]
@@ -159,5 +162,44 @@ final class HavaBiteUITests: XCTestCase {
         let signInButton = app.buttons["logInButton"]
         XCTAssertTrue(signInButton.exists, "The user should be logged out and back on the login screen")
     }
+    
+    //MARK: T-6
+    //TC-18
+    func testSideMenuFriendNav() {
+        let app = XCUIApplication()
+        app.launch()
+
+        // Log in
+        let logInButton = app.buttons["logInButton"]
+
+        let passwordTextField = app.textFields["passwordText"]
+        passwordTextField.tap()
+        passwordTextField.typeText("password123")
+        app.keyboards.buttons["Return"].tap()
+
+        let emailTextField = app.textFields["emailText"]
+        emailTextField.tap()
+        emailTextField.typeText("john2@example.com")
+        app.keyboards.buttons["Return"].tap()
+
+        logInButton.tap()
+        //Sleep so the system can communicate with backend and load the UI
+        Thread.sleep(forTimeInterval: 5)
+        
+        // Open side menu
+        let sideMenuButton = app.buttons["Side Menu Button"]
+        sideMenuButton.tap()
+
+        // Find and tap the third menu item (Logout, index 2 since arrays are 0-indexed)
+        let sideMenuTableView = app.tables["SideMenuTable"] // Replace with the actual accessibility identifier of your table view
+        
+        let menuItem = sideMenuTableView.cells.element(boundBy: 2) // Fourth menu item
+        
+        print(menuItem)
+        XCTAssertTrue(menuItem.exists, "Third menu item should exist")
+        menuItem.tap()
+
+    }
+    
     
 }

@@ -24,7 +24,7 @@ class SideMenuViewController: UIViewController{
     var delegate: SideMenuViewControllerDelegate?
     var defaultHighlightedCell: Int = 0
     
-    let currentUser = Auth.auth().currentUser
+    let currentUser = UserSession.shared.currentUser
     
     var menu: [SideMenuModel] = [
         SideMenuModel(icon: UIImage(systemName: "globe.americas.fill")!, title: "Map"),
@@ -55,8 +55,7 @@ class SideMenuViewController: UIViewController{
             self.tableView.selectRow(at: defaultRow, animated: false, scrollPosition: .none)
             
             //set label to email
-            let name = self.currentUser?.email
-            self.headerLabel.text = name
+            self.headerLabel.text = UserSession.shared.loggedInUser!.first_name
             
         }
         

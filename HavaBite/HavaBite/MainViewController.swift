@@ -100,7 +100,9 @@ extension MainViewController: SideMenuViewControllerDelegate {
         case 1:
             // Search
             self.showViewController(viewController: UINavigationController.self, storyboardId: "SearchNavID")
-            
+        case 2:
+            // friend
+            self.showViewController(viewController: UINavigationController.self, storyboardId: "FriendNavID")
         case 3:
             //Log out
             signOutUser()
