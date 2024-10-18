@@ -75,7 +75,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Dont have an account?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ak4-vX-zZ1">
                                 <rect key="frame" x="124" y="709" width="176" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
@@ -180,6 +180,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Igp-LG-6fj">
                                 <rect key="frame" x="153" y="694" width="87" height="35"/>
                                 <accessibility key="accessibilityConfiguration" identifier="registerButton"/>
+                                <color key="tintColor" systemColor="systemBrownColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Register"/>
                                 <connections>
@@ -460,7 +461,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="3U1-fK-M6h"/>
+        <segue reference="lpE-CW-Nwy"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
