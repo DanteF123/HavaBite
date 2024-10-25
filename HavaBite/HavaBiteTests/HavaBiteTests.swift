@@ -47,13 +47,13 @@ final class HavaBiteTests: XCTestCase {
     
     //TC-1
     func testSignUpWithNil() throws {
-        let result = registerVC.register(firstName: "", lastName: "", email: "", password: "")
+        let result = registerVC.register(firstName: "", lastName: "", email: "", password: ""){success in if success{print("success")}}
         XCTAssertFalse(result)
     }
     
     //TC-2
     func testSignUpHappyPath() throws {
-        let result = registerVC.register(firstName: "user1", lastName: "user1", email: "user1@email.com", password: "123456")
+        let result = registerVC.register(firstName: "user1", lastName: "user1", email: "user1@email.com", password: "123456"){success in if success{print("success")}}
         XCTAssertTrue(result)
     }
     
@@ -63,7 +63,7 @@ final class HavaBiteTests: XCTestCase {
         let expectation = self.expectation(description: "Sign Up Success")
 
         // Simulate user registration with valid input
-        let result = registerVC.register(firstName: "user2", lastName: "user2", email: "user2@email.com", password: "123456")
+        let result = registerVC.register(firstName: "user2", lastName: "user2", email: "user2@email.com", password: "123456"){success in if success{print("success")}}
         
         // Assert that the registration result is true (synchronous part)
         XCTAssertTrue(result)
@@ -83,7 +83,7 @@ final class HavaBiteTests: XCTestCase {
         let expectation = self.expectation(description: "Sign Up Failure")
 
         // Simulate user registration with missing input
-        let result = registerVC.register(firstName: "", lastName: "", email: "", password: "123456")
+        let result = registerVC.register(firstName: "", lastName: "", email: "", password: "123456"){success in if success{print("success")}}
         
         // Assert that the registration result is false (synchronous part)
         XCTAssertFalse(result)

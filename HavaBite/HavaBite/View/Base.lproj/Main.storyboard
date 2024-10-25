@@ -301,7 +301,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vfh-ae-hK2">
-                                <rect key="frame" x="16" y="243" width="361" height="311"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="749"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <standardMapConfiguration key="preferredConfiguration"/>
                             </mapView>
@@ -313,6 +313,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Side Menu Button" image="line.3.horizontal" catalog="system" id="Uzg-tr-A9L" userLabel="Side Menu Button"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="mapView" destination="vfh-ae-hK2" id="wzx-Ez-54y"/>
                         <outlet property="sideMenuButton" destination="Uzg-tr-A9L" id="8Lv-3e-rhc"/>
                     </connections>
                 </viewController>

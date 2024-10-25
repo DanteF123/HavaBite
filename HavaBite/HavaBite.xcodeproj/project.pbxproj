@@ -578,6 +578,7 @@
 				DEVELOPMENT_TEAM = 9US789XHWW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HavaBite/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "HavaBite requires location so it can find nearby restaurants";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -608,6 +609,7 @@
 				DEVELOPMENT_TEAM = 9US789XHWW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HavaBite/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "HavaBite requires location so it can find nearby restaurants";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
