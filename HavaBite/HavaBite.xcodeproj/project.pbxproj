@@ -19,6 +19,11 @@
 		7B272DBC2C865EF3002DDD32 /* HavaBiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B272DBB2C865EF3002DDD32 /* HavaBiteTests.swift */; };
 		7B272DC62C865EF3002DDD32 /* HavaBiteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B272DC52C865EF3002DDD32 /* HavaBiteUITests.swift */; };
 		7B272DC82C865EF3002DDD32 /* HavaBiteUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B272DC72C865EF3002DDD32 /* HavaBiteUITestsLaunchTests.swift */; };
+		7B655AFC2CCC4C220056A13C /* PlaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B655AFB2CCC4C220056A13C /* PlaceAnnotation.swift */; };
+		7B655AFF2CCC4C730056A13C /* CLLocationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B655AFE2CCC4C730056A13C /* CLLocationExtension.swift */; };
+		7B655B012CCC4D140056A13C /* PlacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B655B002CCC4D140056A13C /* PlacesTableViewController.swift */; };
+		7B655B052CCC4D460056A13C /* PlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B655B042CCC4D460056A13C /* PlaceDetailViewController.swift */; };
+		7B655B072CCC4FF10056A13C /* PlaceAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B655B062CCC4FF10056A13C /* PlaceAnnotationView.swift */; };
 		7B6AB0D72C925EE80023FE72 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6AB0D62C925EE80023FE72 /* WelcomeViewController.swift */; };
 		7B7D48082CAE0BF90098D2BD /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D48072CAE0BF90098D2BD /* UserSession.swift */; };
 		7B7D480A2CB1D39F0098D2BD /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7D48092CB1D39F0098D2BD /* FriendCell.xib */; };
@@ -75,6 +80,11 @@
 		7B272DC12C865EF3002DDD32 /* HavaBiteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HavaBiteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B272DC52C865EF3002DDD32 /* HavaBiteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HavaBiteUITests.swift; sourceTree = "<group>"; };
 		7B272DC72C865EF3002DDD32 /* HavaBiteUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HavaBiteUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7B655AFB2CCC4C220056A13C /* PlaceAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAnnotation.swift; sourceTree = "<group>"; };
+		7B655AFE2CCC4C730056A13C /* CLLocationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationExtension.swift; sourceTree = "<group>"; };
+		7B655B002CCC4D140056A13C /* PlacesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesTableViewController.swift; sourceTree = "<group>"; };
+		7B655B042CCC4D460056A13C /* PlaceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailViewController.swift; sourceTree = "<group>"; };
+		7B655B062CCC4FF10056A13C /* PlaceAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAnnotationView.swift; sourceTree = "<group>"; };
 		7B6AB0D62C925EE80023FE72 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		7B7D48072CAE0BF90098D2BD /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		7B7D48092CB1D39F0098D2BD /* FriendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
@@ -191,9 +201,37 @@
 			path = HavaBiteUITests;
 			sourceTree = "<group>";
 		};
+		7B655AF92CCC4BF60056A13C /* Annotations */ = {
+			isa = PBXGroup;
+			children = (
+				7B655AFB2CCC4C220056A13C /* PlaceAnnotation.swift */,
+				7B655B062CCC4FF10056A13C /* PlaceAnnotationView.swift */,
+			);
+			path = Annotations;
+			sourceTree = "<group>";
+		};
+		7B655AFD2CCC4C4E0056A13C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7B655AFE2CCC4C730056A13C /* CLLocationExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7B655B032CCC4D310056A13C /* Places */ = {
+			isa = PBXGroup;
+			children = (
+				7B655B002CCC4D140056A13C /* PlacesTableViewController.swift */,
+				7B655B042CCC4D460056A13C /* PlaceDetailViewController.swift */,
+			);
+			path = Places;
+			sourceTree = "<group>";
+		};
 		7B6AB0D22C925B540023FE72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7B655AFD2CCC4C4E0056A13C /* Extensions */,
+				7B655AF92CCC4BF60056A13C /* Annotations */,
 				7BC58CBE2C9602B900BA4B69 /* User.swift */,
 				7BC58CC72C9A31F900BA4B69 /* SideMenuModel.swift */,
 			);
@@ -221,6 +259,7 @@
 		7BC58CC02C98E7FD00BA4B69 /* Side Menu */ = {
 			isa = PBXGroup;
 			children = (
+				7B655B032CCC4D310056A13C /* Places */,
 				7B1EB9462CA35C7E005A83D0 /* Cells */,
 				7BC58CC52C98E8F000BA4B69 /* SideMenuViewController.swift */,
 				7BC58CCB2C9B897700BA4B69 /* SearchViewController.swift */,
@@ -376,17 +415,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B655AFF2CCC4C730056A13C /* CLLocationExtension.swift in Sources */,
 				7BC58CC62C98E8F000BA4B69 /* SideMenuViewController.swift in Sources */,
 				7BC58CCC2C9B897700BA4B69 /* SearchViewController.swift in Sources */,
 				7B272DA92C865EF2002DDD32 /* ViewController.swift in Sources */,
 				7B7D480C2CB1D3E20098D2BD /* FriendCell.swift in Sources */,
 				7B7D480E2CB35DED0098D2BD /* FriendsViewController.swift in Sources */,
+				7B655B052CCC4D460056A13C /* PlaceDetailViewController.swift in Sources */,
 				7B1EB94A2CA35D95005A83D0 /* SearchCell.swift in Sources */,
 				7BC58CC42C98E85F00BA4B69 /* SideMenuCell.swift in Sources */,
 				7BC58CBD2C95FF9600BA4B69 /* RegisterViewController.swift in Sources */,
+				7B655B012CCC4D140056A13C /* PlacesTableViewController.swift in Sources */,
 				7B7D48082CAE0BF90098D2BD /* UserSession.swift in Sources */,
 				7BC58CC82C9A31F900BA4B69 /* SideMenuModel.swift in Sources */,
+				7B655AFC2CCC4C220056A13C /* PlaceAnnotation.swift in Sources */,
 				7BC58CBF2C9602B900BA4B69 /* User.swift in Sources */,
+				7B655B072CCC4FF10056A13C /* PlaceAnnotationView.swift in Sources */,
 				7BC58CCE2C9B8B1A00BA4B69 /* MapViewController.swift in Sources */,
 				7B1EB9452CA357EE005A83D0 /* UserDetailsViewController.swift in Sources */,
 				7B6AB0D72C925EE80023FE72 /* WelcomeViewController.swift in Sources */,

@@ -16,6 +16,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     var locationManager: CLLocationManager?
     
+    private var places: [PlaceAnnotation] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,43 +34,110 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         locationManager?.delegate = self
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.requestLocation()
+        
+        checkLocationAuthorization()
+
     }
     
+    
+    //TODO: Figure out how to handle the user rejecting 
     private func checkLocationAuthorization(){
-        guard let locationManager = locationManager, let location = locationManager.location else {return}
+        guard let locationManager = locationManager, let location = locationManager.location else { return }
         
-        switch locationManager.authorizationStatus{
+        switch locationManager.authorizationStatus {
         case .authorizedWhenInUse, .authorizedAlways:
-            let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 750, longitudinalMeters: 750)
+            let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 1750, longitudinalMeters: 1750)
             mapView.setRegion(region, animated: true)
-        case .denied:
-            print("")
-        case .notDetermined, .restricted:
-            print("")
+            // Re-center the search region here
+            getNearbyRestaurants(for: region)
+        case .denied, .notDetermined, .restricted:
+            print("Authorization not granted.")
         @unknown default:
-            print("")
+            print("Unknown authorization status.")
         }
+    }
+    
+    private func presentPlacesSheet(places: [PlaceAnnotation]){
         
+        guard let locationManager = locationManager,
+              let userLocation = locationManager.location else {return}
+        
+        let placesTVC = PlacesTableViewController(userLocation: userLocation, places: places)
+        placesTVC.modalPresentationStyle = .pageSheet
+        
+        if let sheet = placesTVC.sheetPresentationController{
+            sheet.prefersGrabberVisible = true
+            sheet.detents = [.medium(),.large()]
+            present(placesTVC,animated: true)
+        }
+    }
+    
+    //function to get nearby restaurants
+    private func getNearbyRestaurants(for region: MKCoordinateRegion) {
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = "Restaurant"
+        request.region = region
+        
+        let search = MKLocalSearch(request: request)
+        search.start { [weak self] response, error in
+            guard let self = self, let response = response, error == nil else { return }
+            self.places = response.mapItems.map { mapItem in
+                PlaceAnnotation(mapItem: mapItem, rating: Double.random(in: 1.0...5.0))
+            }
+            
+            self.places.forEach { place in self.mapView.addAnnotation(place) }
+            self.presentPlacesSheet(places: self.places)
+        }
     }
 
 
 }
 
 
-
-
 //Map View Delegate methods
 extension MapViewController {
     
     private func clearAllSelections(){
-        
+        self.places = self.places.map{
+            place in place.isSelected = false
+            return place
+        }
     }
     
     func mapView(_ mapView: MKMapView, didSelect annotation: any MKAnnotation) {
+        // Clear all selections
+        clearAllSelections()
+
+        guard let selectedAnnotation = annotation as? PlaceAnnotation else { return }
         
+        // Set the selected annotation's `isSelected` property to true
+        if let placeAnnotation = self.places.first(where: { $0.id == selectedAnnotation.id }) {
+            placeAnnotation.isSelected = true
+        }
+        
+        // Move the selected annotation to the top of the list
+        let sortedPlaces = self.places.sorted { $0.isSelected && !$1.isSelected }
+        presentPlacesSheet(places: sortedPlaces)
     }
-    
+
     // This method provides the custom annotation view
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        guard let annotation = annotation as? PlaceAnnotation else { return nil }
+//        
+//        let identifier = "PlaceAnnotation"
+//        var view: PlaceAnnotationView
+//        
+//        // Reuse the annotation view if possible
+//        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? PlaceAnnotationView {
+//            dequeuedView.annotation = annotation
+//            view = dequeuedView
+//        } else {
+//            // Create a new annotation view
+//            view = PlaceAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//        }
+//        
+//        return view
+//    }
 
 }
 
