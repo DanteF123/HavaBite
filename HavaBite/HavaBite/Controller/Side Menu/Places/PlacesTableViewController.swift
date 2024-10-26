@@ -20,7 +20,10 @@ class PlacesTableViewController: UITableViewController{
         super.init(nibName: nil, bundle: nil)
         
         //register cell
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "PlaceCell")
+        tableView.register(RestaurantTableCell.nib, forCellReuseIdentifier: RestaurantTableCell.identifier)
+        // Enable automatic row height
+        tableView.rowHeight = 85
+        
         self.places.swapAt(indexForSelectedRow, 0)
     }
     
@@ -48,16 +51,15 @@ class PlacesTableViewController: UITableViewController{
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantTableCell.identifier, for: indexPath) as? RestaurantTableCell else { fatalError("xib does not exist")
+        }
         let place = places[indexPath.row]
         
-        //cell congfig
-        var content = cell.defaultContentConfiguration()
-        content.text=place.name
-        content.secondaryText = formatDistanceForDisplay(calculateDistance(from: userLocation, to: place.location))
+        cell.restaurant.text = place.name
+        cell.restaurantDistance.text = formatDistanceForDisplay(calculateDistance(from: userLocation, to: place.location))
         
-        cell.contentConfiguration  = content
-        cell.backgroundColor = place.isSelected ? UIColor.lightGray : UIColor.clear
+        cell.restaurantRating.text = "0"
+        
         return cell
     }
     

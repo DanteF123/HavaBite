@@ -74,18 +74,33 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     //function to get nearby restaurants
     private func getNearbyRestaurants(for region: MKCoordinateRegion) {
+        var expandedRegion = region
+        expandedRegion.span.latitudeDelta *= 2  // Expanding the search area
+        expandedRegion.span.longitudeDelta *= 2
+
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = "Restaurant"
-        request.region = region
-        
+        request.region = expandedRegion
+
         let search = MKLocalSearch(request: request)
         search.start { [weak self] response, error in
-            guard let self = self, let response = response, error == nil else { return }
-            self.places = response.mapItems.map { mapItem in
-                PlaceAnnotation(mapItem: mapItem, rating: Double.random(in: 1.0...5.0))
+            guard let self = self, let response = response, error == nil else {
+                print("Search error: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+
+            // Map results to PlaceAnnotation and add to both annotations and list
+            let newPlaces = response.mapItems.map { PlaceAnnotation(mapItem: $0, rating: Double.random(in: 1.0...5.0)) }
+            
+            // Add only unique places to avoid duplication
+            for place in newPlaces {
+                if !self.places.contains(where: { $0.id == place.id }) {
+                    self.places.append(place)
+                    self.mapView.addAnnotation(place)  // Add to map
+                }
             }
             
-            self.places.forEach { place in self.mapView.addAnnotation(place) }
+            // Present updated list with all map annotations
             self.presentPlacesSheet(places: self.places)
         }
     }
