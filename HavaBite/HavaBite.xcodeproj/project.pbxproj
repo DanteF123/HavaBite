@@ -22,12 +22,12 @@
 		7B655AFC2CCC4C220056A13C /* PlaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B655AFB2CCC4C220056A13C /* PlaceAnnotation.swift */; };
 		7B655AFF2CCC4C730056A13C /* CLLocationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B655AFE2CCC4C730056A13C /* CLLocationExtension.swift */; };
 		7B655B012CCC4D140056A13C /* PlacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B655B002CCC4D140056A13C /* PlacesTableViewController.swift */; };
-		7B655B052CCC4D460056A13C /* PlaceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B655B042CCC4D460056A13C /* PlaceDetailViewController.swift */; };
 		7B655B072CCC4FF10056A13C /* PlaceAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B655B062CCC4FF10056A13C /* PlaceAnnotationView.swift */; };
 		7B655B092CCC5D280056A13C /* RestaurantTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B655B082CCC5D280056A13C /* RestaurantTableCell.xib */; };
 		7B655B0B2CCC61AA0056A13C /* RestaurantTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B655B0A2CCC61AA0056A13C /* RestaurantTableCell.swift */; };
 		7B655B0D2CD1A75B0056A13C /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B655B0C2CD1A75B0056A13C /* Place.swift */; };
 		7B655B0F2CD2E5A90056A13C /* PlaceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B655B0E2CD2E5A90056A13C /* PlaceDetailsViewController.swift */; };
+		7B655B112CD2F0DA0056A13C /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B655B102CD2F0DA0056A13C /* ReviewViewController.swift */; };
 		7B6AB0D72C925EE80023FE72 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6AB0D62C925EE80023FE72 /* WelcomeViewController.swift */; };
 		7B7D48082CAE0BF90098D2BD /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D48072CAE0BF90098D2BD /* UserSession.swift */; };
 		7B7D480A2CB1D39F0098D2BD /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7D48092CB1D39F0098D2BD /* FriendCell.xib */; };
@@ -87,12 +87,12 @@
 		7B655AFB2CCC4C220056A13C /* PlaceAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAnnotation.swift; sourceTree = "<group>"; };
 		7B655AFE2CCC4C730056A13C /* CLLocationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationExtension.swift; sourceTree = "<group>"; };
 		7B655B002CCC4D140056A13C /* PlacesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesTableViewController.swift; sourceTree = "<group>"; };
-		7B655B042CCC4D460056A13C /* PlaceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailViewController.swift; sourceTree = "<group>"; };
 		7B655B062CCC4FF10056A13C /* PlaceAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAnnotationView.swift; sourceTree = "<group>"; };
 		7B655B082CCC5D280056A13C /* RestaurantTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantTableCell.xib; sourceTree = "<group>"; };
 		7B655B0A2CCC61AA0056A13C /* RestaurantTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableCell.swift; sourceTree = "<group>"; };
 		7B655B0C2CD1A75B0056A13C /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		7B655B0E2CD2E5A90056A13C /* PlaceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailsViewController.swift; sourceTree = "<group>"; };
+		7B655B102CD2F0DA0056A13C /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		7B6AB0D62C925EE80023FE72 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		7B7D48072CAE0BF90098D2BD /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		7B7D48092CB1D39F0098D2BD /* FriendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
@@ -232,8 +232,8 @@
 			isa = PBXGroup;
 			children = (
 				7B655B002CCC4D140056A13C /* PlacesTableViewController.swift */,
-				7B655B042CCC4D460056A13C /* PlaceDetailViewController.swift */,
 				7B655B0E2CD2E5A90056A13C /* PlaceDetailsViewController.swift */,
+				7B655B102CD2F0DA0056A13C /* ReviewViewController.swift */,
 			);
 			path = Places;
 			sourceTree = "<group>";
@@ -437,7 +437,6 @@
 				7B7D480C2CB1D3E20098D2BD /* FriendCell.swift in Sources */,
 				7B7D480E2CB35DED0098D2BD /* FriendsViewController.swift in Sources */,
 				7B655B0B2CCC61AA0056A13C /* RestaurantTableCell.swift in Sources */,
-				7B655B052CCC4D460056A13C /* PlaceDetailViewController.swift in Sources */,
 				7B1EB94A2CA35D95005A83D0 /* SearchCell.swift in Sources */,
 				7BC58CC42C98E85F00BA4B69 /* SideMenuCell.swift in Sources */,
 				7BC58CBD2C95FF9600BA4B69 /* RegisterViewController.swift in Sources */,
@@ -446,6 +445,7 @@
 				7BC58CC82C9A31F900BA4B69 /* SideMenuModel.swift in Sources */,
 				7B655AFC2CCC4C220056A13C /* PlaceAnnotation.swift in Sources */,
 				7BC58CBF2C9602B900BA4B69 /* User.swift in Sources */,
+				7B655B112CD2F0DA0056A13C /* ReviewViewController.swift in Sources */,
 				7B655B072CCC4FF10056A13C /* PlaceAnnotationView.swift in Sources */,
 				7BC58CCE2C9B8B1A00BA4B69 /* MapViewController.swift in Sources */,
 				7B1EB9452CA357EE005A83D0 /* UserDetailsViewController.swift in Sources */,
