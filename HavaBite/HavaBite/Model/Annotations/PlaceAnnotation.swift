@@ -15,7 +15,8 @@ class PlaceAnnotation: MKPointAnnotation{
     
     init(mapItem: MKMapItem){
         self.mapItem = mapItem
-        self.id = "\(mapItem.placemark.postalAddress?.street ?? "")+\(mapItem.phoneNumber ?? "")"
+        
+        self.id = "LAT:\(mapItem.placemark.coordinate.latitude.description) LONG:\(mapItem.placemark.coordinate.longitude.description)"
         super.init()
         self.coordinate = mapItem.placemark.coordinate
     }
