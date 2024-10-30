@@ -27,6 +27,7 @@
 		7B655B092CCC5D280056A13C /* RestaurantTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B655B082CCC5D280056A13C /* RestaurantTableCell.xib */; };
 		7B655B0B2CCC61AA0056A13C /* RestaurantTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B655B0A2CCC61AA0056A13C /* RestaurantTableCell.swift */; };
 		7B655B0D2CD1A75B0056A13C /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B655B0C2CD1A75B0056A13C /* Place.swift */; };
+		7B655B0F2CD2E5A90056A13C /* PlaceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B655B0E2CD2E5A90056A13C /* PlaceDetailsViewController.swift */; };
 		7B6AB0D72C925EE80023FE72 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6AB0D62C925EE80023FE72 /* WelcomeViewController.swift */; };
 		7B7D48082CAE0BF90098D2BD /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D48072CAE0BF90098D2BD /* UserSession.swift */; };
 		7B7D480A2CB1D39F0098D2BD /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7D48092CB1D39F0098D2BD /* FriendCell.xib */; };
@@ -91,6 +92,7 @@
 		7B655B082CCC5D280056A13C /* RestaurantTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RestaurantTableCell.xib; sourceTree = "<group>"; };
 		7B655B0A2CCC61AA0056A13C /* RestaurantTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableCell.swift; sourceTree = "<group>"; };
 		7B655B0C2CD1A75B0056A13C /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		7B655B0E2CD2E5A90056A13C /* PlaceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailsViewController.swift; sourceTree = "<group>"; };
 		7B6AB0D62C925EE80023FE72 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		7B7D48072CAE0BF90098D2BD /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		7B7D48092CB1D39F0098D2BD /* FriendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 			children = (
 				7B655B002CCC4D140056A13C /* PlacesTableViewController.swift */,
 				7B655B042CCC4D460056A13C /* PlaceDetailViewController.swift */,
+				7B655B0E2CD2E5A90056A13C /* PlaceDetailsViewController.swift */,
 			);
 			path = Places;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B655AFF2CCC4C730056A13C /* CLLocationExtension.swift in Sources */,
+				7B655B0F2CD2E5A90056A13C /* PlaceDetailsViewController.swift in Sources */,
 				7BC58CC62C98E8F000BA4B69 /* SideMenuViewController.swift in Sources */,
 				7BC58CCC2C9B897700BA4B69 /* SearchViewController.swift in Sources */,
 				7B655B0D2CD1A75B0056A13C /* Place.swift in Sources */,

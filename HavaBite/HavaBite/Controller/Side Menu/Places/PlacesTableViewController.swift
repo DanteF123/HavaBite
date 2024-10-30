@@ -46,8 +46,26 @@ class PlacesTableViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let place = places[indexPath.row]
-        let placeDetailVC = PlaceDetailViewController(place: place)
-        present(placeDetailVC,animated: true)
+//        let placeDetailVC = PlaceDetailsViewController(place: place)
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let placeDetailsVC = storyboard.instantiateViewController(withIdentifier: "PlaceDetailsID") as? PlaceDetailsViewController {
+            placeDetailsVC.place = place
+            
+            // Set the modal presentation style
+            placeDetailsVC.modalPresentationStyle = .pageSheet
+            
+            if let sheet = placeDetailsVC.sheetPresentationController {
+                // Set the preferred content size
+                sheet.detents = [.medium()] // Medium covers roughly half the screen
+                sheet.prefersGrabberVisible = true // Optional: Shows a grabber at the top of the sheet
+            }
+            
+            self.present(placeDetailsVC, animated: true)
+        } else {
+            print("Error: Could not instantiate UserDetailsViewController")
+        }
+    
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
