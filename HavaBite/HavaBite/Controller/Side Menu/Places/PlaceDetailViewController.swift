@@ -32,6 +32,17 @@ class PlaceDetailViewController:UIViewController{
         return label
     }()
     
+    
+    var idLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .left
+        label.font = UIFont.preferredFont(forTextStyle: .title1)
+        return label
+    }()
+    
     init(place: PlaceAnnotation) {
         self.place = place
         super.init(nibName: nil, bundle: nil)
@@ -49,9 +60,11 @@ class PlaceDetailViewController:UIViewController{
             
         nameLabel.text = place.name
         addressLabel.text = place.phone
+        idLabel.text = place.id
         
         stackView.addArrangedSubview(nameLabel)
         stackView.addArrangedSubview(addressLabel)
+        stackView.addArrangedSubview(idLabel)
         
         nameLabel.widthAnchor.constraint(equalToConstant: view.bounds.width - 20).isActive = true
         view.addSubview(stackView)

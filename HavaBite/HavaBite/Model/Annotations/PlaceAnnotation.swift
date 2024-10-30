@@ -10,13 +10,12 @@ import MapKit
 
 class PlaceAnnotation: MKPointAnnotation{
     let mapItem: MKMapItem
-    let id = UUID()
+    let id : String
     var isSelected:Bool = false
-    var rating: Double // New rating property
     
-    init(mapItem: MKMapItem,  rating: Double = 0.0){
+    init(mapItem: MKMapItem){
         self.mapItem = mapItem
-        self.rating = rating
+        self.id = "\(mapItem.placemark.postalAddress?.street ?? "")+\(mapItem.phoneNumber ?? "")"
         super.init()
         self.coordinate = mapItem.placemark.coordinate
     }

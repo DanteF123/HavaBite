@@ -25,7 +25,7 @@ class PlaceAnnotationView: MKAnnotationView {
             ratingLabel.font = UIFont.boldSystemFont(ofSize: 14)
             
             // Set the rating value as the text of the label
-            ratingLabel.text = String(format:"%.1f",placeAnnotation.rating)
+//            ratingLabel.text = String(format:"%.1f",placeAnnotation.rating)
             
             // Add rating label as a subview
             addSubview(ratingLabel)

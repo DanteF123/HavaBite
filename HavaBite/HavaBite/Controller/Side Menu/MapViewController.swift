@@ -57,6 +57,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
+    private func dupPresentPlacesSheet(places: [PlaceAnnotation]){
+        
+        guard let locationManager = locationManager,
+              let userLocation = locationManager.location else {return}
+        
+        let placesTVC = PlacesTableViewController(userLocation: userLocation, places: places)
+        placesTVC.modalPresentationStyle = .pageSheet
+        
+        if let sheet = placesTVC.sheetPresentationController{
+            sheet.prefersGrabberVisible = true
+            sheet.detents = [.medium(),.large()]
+            present(placesTVC,animated: true)
+        }
+    }
+    
     private func presentPlacesSheet(places: [PlaceAnnotation]){
         
         guard let locationManager = locationManager,
@@ -88,14 +103,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 print("Search error: \(error?.localizedDescription ?? "Unknown error")")
                 return
             }
-
+            
             // Map results to PlaceAnnotation and add to both annotations and list
-            let newPlaces = response.mapItems.map { PlaceAnnotation(mapItem: $0, rating: Double.random(in: 1.0...5.0)) }
+            let newPlaces = response.mapItems.map { PlaceAnnotation(mapItem: $0) }
             
             // Add only unique places to avoid duplication
             for place in newPlaces {
                 if !self.places.contains(where: { $0.id == place.id }) {
+                    
                     self.places.append(place)
+    
+                    //place id
+                    print(place.id)
                     self.mapView.addAnnotation(place)  // Add to map
                 }
             }
