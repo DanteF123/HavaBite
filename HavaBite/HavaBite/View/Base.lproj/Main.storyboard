@@ -475,18 +475,11 @@
         <!--Review View Controller-->
         <scene sceneID="llY-Jq-DAq">
             <objects>
-                <viewController id="p8R-ac-Mfw" customClass="ReviewViewController" customModule="HavaBite" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReviewID" id="p8R-ac-Mfw" customClass="ReviewViewController" customModule="HavaBite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WKm-PY-huP">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1m-Fv-hzs">
-                                <rect key="frame" x="94" y="100" width="41" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fvJ-CB-zLh">
                                 <rect key="frame" x="153" y="147" width="44" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -495,13 +488,6 @@
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="out of 5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIj-5V-ihw">
                                 <rect key="frame" x="205" y="154" width="82" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Restaurant Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAR-de-EJB">
-                                <rect key="frame" x="143" y="100" width="154" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -516,11 +502,25 @@
                                 <buttonConfiguration key="configuration" style="filled" title="Submit">
                                     <fontDescription key="titleFontDescription" name="Menlo-Regular" family="Menlo" pointSize="15"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="submitButtonClicked:" destination="p8R-ac-Mfw" eventType="touchUpInside" id="7vH-jh-XlI"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Restaurant Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAR-de-EJB">
+                                <rect key="frame" x="16" y="100" width="361" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4mc-fr-qM9"/>
                         <color key="backgroundColor" systemColor="systemMintColor"/>
                     </view>
+                    <connections>
+                        <outlet property="ratingTextField" destination="fvJ-CB-zLh" id="607-mN-nGU"/>
+                        <outlet property="restaurantName" destination="fAR-de-EJB" id="bPq-CR-vIt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cky-j1-Hc9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -557,6 +557,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="Review">
                                     <fontDescription key="titleFontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="reviewButtonClick:" destination="Xn1-9t-vSJ" eventType="touchUpInside" id="aTK-XD-RbQ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gWr-0G-a7P"/>
@@ -566,7 +569,6 @@
                     <connections>
                         <outlet property="phoneLabel" destination="EX1-0h-0yH" id="zHO-MY-WJt"/>
                         <outlet property="restaurantLabel" destination="Fhf-yM-ShQ" id="O4C-f1-Dcz"/>
-                        <outlet property="reviewButton" destination="Tm6-05-g38" id="Xtc-qZ-Ygo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fhX-Is-gdM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
