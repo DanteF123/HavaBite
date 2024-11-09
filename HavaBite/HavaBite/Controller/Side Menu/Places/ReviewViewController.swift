@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class ReviewViewController: UIViewController {
+class ReviewViewController: UIViewController, UITextFieldDelegate {
     
     let db = Firestore.firestore()
     let currentUser = UserSession.shared.currentUser
@@ -21,12 +21,15 @@ class ReviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ratingTextField.delegate = self
+        ratingTextField.keyboardType = .numberPad
 
         restaurantName.text = "Rate \(place!.name)"
     }
     // Upon button click, submit rating to Firebase.
     @IBAction func submitButtonClicked(_ sender: UIButton) {
-        postReview()
+        postReview(review: self.ratingTextField.text ?? " ")
+        print(currentUser!.email)
     }
     
     
@@ -34,41 +37,53 @@ class ReviewViewController: UIViewController {
 
 
 extension ReviewViewController{
-    func verifyInput(){
+    func validateInput(input:String) -> Int {
+        let input = Int(input) ?? 0
+        if input <= 0 || input > 5 {
+            let message = "Please enter a number between 1 and 5."
+            let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+
+            })
+            self.present(alert, animated: true, completion: nil)
+            
+            self.ratingTextField.text = ""
+            
+            return -1
+        }
+        
+        else{
+            
+            let message = "Rating successfully submitted."
+            let alert = UIAlertController(title: "Success!", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
+
+            })
+            self.present(alert, animated: true, completion: nil)
+            
+            self.ratingTextField.text = ""
+            return input
+        }
         
     }
     
-    func postReview(){
-        let reviewRef = db.collection("users").document(currentUser!.uid).collection("reviews").document(place!.id)
-        reviewRef.setData(["rating":5]){error in
-            if let error = error {
-                print("Error posting review: \(error)")
-                //            } else {
-                //
-                //                if UserSession.shared.friends.contains(userRef.documentID) {
-                //                    let message = "Friend Already Added"
-                //                    let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-                //                    alert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
-                //
-                //                    })
-                //                    self.present(alert, animated: true, completion: nil)
-                //
-                //                }
-                //                else{
-                //
-                //                    UserSession.shared.friends.insert(self.user!.id)
-                //                    let message = "Friend Added"
-                //                    let alert = UIAlertController(title: "Success", message: message, preferredStyle: .alert)
-                //                    alert.addAction(UIAlertAction(title: "Ok", style: .default) { _ in
-                //
-                //                    })
-                //                    self.present(alert, animated: true, completion: nil)
-                //
-                //                }
-                //
-                //            }
+    func postReview(review:String){
+        
+        let review = self.validateInput(input: review)
+        
+        if review != -1{
+            
+            let reviewRef = db.collection("users").document(currentUser!.uid).collection("reviews").document(place!.id)
+            reviewRef.setData(["rating":review]){error in
+                if let error = error {
+                    print("Error posting review: \(error)")
+
+                }
+                
             }
             
+            
         }
+
     }
 }

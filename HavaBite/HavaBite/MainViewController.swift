@@ -120,7 +120,7 @@ extension MainViewController: SideMenuViewControllerDelegate {
         do {
             try Auth.auth().signOut()
             print("User signed out successfully.")
-            // Optionally, you can navigate the user to a different screen or update the UI
+            
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }
