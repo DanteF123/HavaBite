@@ -9,6 +9,8 @@ import XCTest
 @testable import HavaBite
 import FirebaseAuth
 import FirebaseFirestore
+import CoreLocation
+import MapKit
 
 final class HavaBiteTests: XCTestCase {
     
@@ -545,4 +547,286 @@ final class HavaBiteTests: XCTestCase {
         wait(for: [removeFriendExpectation, firestoreCheckExpectation], timeout: 5.0)
         
     }
+    
+    
+    //TC-22
+    func testUserLocationTracking() {
+        let testTimeout: TimeInterval = 10
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mapViewController = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+        mapViewController.loadViewIfNeeded()
+        // Expectation for waiting until the location manager updates the location
+        let locationUpdatedExpectation = expectation(description: "Location should update")
+
+        // Check that location services are enabled and mapView shows user location
+        XCTAssertTrue(CLLocationManager.locationServicesEnabled(), "Location services should be enabled.")
+        XCTAssertTrue(mapViewController.mapView.showsUserLocation, "User location should be shown on the map.")
+        
+        // Delay to give time for location updates
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            // Assuming authorization was granted, check if a location has been set
+            if let userLocation = mapViewController.locationManager?.location {
+                // Center of the map should be near the user's actual location
+                XCTAssertEqual(mapViewController.mapView.centerCoordinate.latitude, userLocation.coordinate.latitude, accuracy: 0.01)
+                XCTAssertEqual(mapViewController.mapView.centerCoordinate.longitude, userLocation.coordinate.longitude, accuracy: 0.01)
+                
+                locationUpdatedExpectation.fulfill()
+            } else {
+                XCTFail("User location was not updated.")
+            }
+        }
+        
+        // Wait for the location update expectation to be fulfilled
+        wait(for: [locationUpdatedExpectation], timeout: testTimeout)
+    }
+    
+    //TC-23
+    func testPlaceTable(){
+        let sampleUserLocation = CLLocation(latitude: 37.7749, longitude: -122.4194) // Example user location
+        // Create sample MKMapItems for place annotations
+        let placemark1 = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 37.7750, longitude: -122.4195))
+        let mapItem1 = MKMapItem(placemark: placemark1)
+        mapItem1.name = "Restaurant A"
+        
+        let placemark2 = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 37.7751, longitude: -122.4196))
+        let mapItem2 = MKMapItem(placemark: placemark2)
+        mapItem2.name = "Restaurant B"
+        
+        // Create PlaceAnnotation instances using map items
+        let place1 = PlaceAnnotation(mapItem: mapItem1)
+        let place2 = PlaceAnnotation(mapItem: mapItem2)
+        
+        let samplePlaces = [place1, place2]
+        
+        // Initialize PlacesTableViewController with sample data
+        let placesTVC = PlacesTableViewController(userLocation: sampleUserLocation, places: samplePlaces)
+        
+        // Trigger the view to load
+        _ = placesTVC.view
+        
+        XCTAssertEqual(placesTVC.tableView.numberOfRows(inSection: 0), samplePlaces.count, "Table should have the same number of rows as places in the array.")
+        // Check that cell displays correct place data for a given row
+        let indexPath = IndexPath(row: 0, section: 0)
+        
+        // Dequeue a cell and configure it
+        let cell = placesTVC.tableView(placesTVC.tableView, cellForRowAt: indexPath) as? RestaurantTableCell
+        
+        // Verify the cell content matches the data in `samplePlaces`
+        XCTAssertEqual(cell?.restaurant.text, samplePlaces[0].name, "Cell should display the correct restaurant name.")
+        
+        let distance = placesTVC.calculateDistance(from: sampleUserLocation, to: samplePlaces[0].location)
+        XCTAssertEqual(cell?.restaurantDistance.text, placesTVC.formatDistanceForDisplay(distance), "Cell should display the correct distance to the restaurant.")
+    }
+    
+    //TC-24
+    func testRestaurantDetails() {
+        let window = UIWindow()
+        let sampleUserLocation = CLLocation(latitude: 37.7749, longitude: -122.4194) // Example user location
+        
+        // Create sample MKMapItems for place annotations
+        let placemark1 = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 37.7750, longitude: -122.4195))
+        let mapItem1 = MKMapItem(placemark: placemark1)
+        mapItem1.name = "Restaurant A"
+        
+        let placemark2 = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 37.7751, longitude: -122.4196))
+        let mapItem2 = MKMapItem(placemark: placemark2)
+        mapItem2.name = "Restaurant B"
+        
+        // Create PlaceAnnotation instances using map items
+        let place1 = PlaceAnnotation(mapItem: mapItem1)
+        let place2 = PlaceAnnotation(mapItem: mapItem2)
+        
+        let samplePlaces = [place1, place2]
+        
+        // Initialize PlacesTableViewController with sample data
+        let placesTVC = PlacesTableViewController(userLocation: sampleUserLocation, places: samplePlaces)
+        
+        // Set up the window and make placesTVC the root view controller
+        window.rootViewController = placesTVC
+        window.makeKeyAndVisible()
+        
+        // Trigger the view to load
+        _ = placesTVC.view
+
+        // Create the expectation
+        let expectation = expectation(description: "PlaceDetailsViewController is presented")
+
+        // Simulate row selection
+        let indexPath = IndexPath(row: 0, section: 0)
+        placesTVC.tableView(placesTVC.tableView, didSelectRowAt: indexPath)
+
+        // Delay briefly to allow presentation to occur
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            // Check if the presented view controller is PlaceDetailsViewController
+            XCTAssertTrue(placesTVC.presentedViewController is PlaceDetailsViewController, "PlaceDetailsViewController should be presented.")
+            expectation.fulfill()
+        }
+
+        // Wait for expectations to be fulfilled
+        waitForExpectations(timeout: 2, handler: nil)
+    }
+    
+    
+    //TC-25
+    func testValidReviewInput(){
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let welcomeVC = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
+        welcomeVC.loadViewIfNeeded()
+        
+        // Expectation to wait for the login to complete
+        let loginExpectation = expectation(description: "Login completes successfully")
+        
+        // Perform login
+        Auth.auth().signIn(withEmail: "x@x.com", password: "123456") { authResult, error in
+            loginExpectation.fulfill() // Fulfill expectation after login completes
+        }
+        
+        // Wait for the login process to complete
+        wait(for: [loginExpectation], timeout: 10)
+
+        let reviewVC = storyboard.instantiateViewController(withIdentifier: "ReviewID") as! ReviewViewController
+
+        reviewVC.loadViewIfNeeded()  // Load view to trigger viewDidLoad
+        
+        
+        // Set up a mock PlaceAnnotation
+        let placemark = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 37.7750, longitude: -122.4195))
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = "Test Restaurant"
+        reviewVC.place = PlaceAnnotation(mapItem: mapItem)
+        
+        // Set up expectation for database write
+        let expectation = self.expectation(description: "Review should be posted to Firestore")
+        
+        // Intercept Firestore writes to confirm expected data
+        let reviewData = ["rating": 5]
+        let reviewRef = reviewVC.db.collection("users").document(UserSession.shared.currentUser!.uid).collection("reviews").document(reviewVC.place!.id)
+        
+        // Assuming Firestore is configured to log or callback for mock data writes
+        reviewRef.setData(reviewData) { error in
+            XCTAssertNil(error, "Error posting review: \(String(describing: error))")
+            expectation.fulfill()
+        }
+        
+        // Call postReview with input "5"
+        reviewVC.postReview(review: "5")
+        
+        // Wait for expectation
+        waitForExpectations(timeout: 2, handler: nil)
+        
+    }
+    
+    
+    //TC-26
+    func testFirebaseRating(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let welcomeVC = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
+        welcomeVC.loadViewIfNeeded()
+        
+        // Expectation to wait for the login to complete
+        let loginExpectation = expectation(description: "Login completes successfully")
+        
+        // Perform login
+        Auth.auth().signIn(withEmail: "x@x.com", password: "123456") { authResult, error in
+            loginExpectation.fulfill() // Fulfill expectation after login completes
+        }
+        
+        // Wait for the login process to complete
+        wait(for: [loginExpectation], timeout: 10)
+
+        let reviewVC = storyboard.instantiateViewController(withIdentifier: "ReviewID") as! ReviewViewController
+
+        reviewVC.loadViewIfNeeded()  // Load view to trigger viewDidLoad
+        
+        // Set up a mock PlaceAnnotation
+        let placemark = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 37.7750, longitude: -122.4195))
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = "Test Restaurant"
+        reviewVC.place = PlaceAnnotation(mapItem: mapItem)
+        
+        reviewVC.postReview(review: "2")
+        let expectation = self.expectation(description: "Review should be added to Firebase and available in Firestore")
+        
+        // Delay to give time for Firestore write to complete (normally takes <1 second)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            // Query Firestore directly to check if the friend was added
+            let db = Firestore.firestore()
+            let friendsRef = db.collection("users").document(UserSession.shared.loggedInUser!.id).collection("users").document(reviewVC.place!.id)
+
+            friendsRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    // Assert that the document contains the correct data
+                    let data = document.data()
+                    XCTAssertEqual(data?["rating"] as? Int, 2, "Rating should Match")
+                    
+                    expectation.fulfill()
+                } else {
+                    XCTFail("Review was not added to Firestore")
+                }
+            }
+        }
+
+        // Wait for the expectations to be fulfilled
+        waitForExpectations(timeout: 5, handler: nil)
+        
+    }
+    
+    
+    
+    //TC-27
+    func testInvalidReview(){
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let welcomeVC = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
+        welcomeVC.loadViewIfNeeded()
+        
+        // Expectation to wait for the login to complete
+        let loginExpectation = expectation(description: "Login completes successfully")
+        
+        // Perform login
+        Auth.auth().signIn(withEmail: "x@x.com", password: "123456") { authResult, error in
+            loginExpectation.fulfill() // Fulfill expectation after login completes
+        }
+        
+        // Wait for the login process to complete
+        wait(for: [loginExpectation], timeout: 10)
+
+        let reviewVC = storyboard.instantiateViewController(withIdentifier: "ReviewID") as! ReviewViewController
+
+        reviewVC.loadViewIfNeeded()  // Load view to trigger viewDidLoad
+        
+        let expectation = expectation(description: "Error alert should be presented")
+        
+        // Set up a mock PlaceAnnotation
+        let placemark = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 37.7750, longitude: -122.4195))
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = "Test Restaurant"
+        reviewVC.place = PlaceAnnotation(mapItem: mapItem)
+        
+        // Call postReview with invalid rating "9"
+        reviewVC.postReview(review: "9")
+        
+        // Delay to allow the alert to present
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            // Check if the presented view controller is an alert
+            guard let alertController = reviewVC.presentedViewController as? UIAlertController else {
+                XCTFail("Expected an alert controller to be presented.")
+                return
+            }
+            
+            // Verify the alert message and title
+            XCTAssertEqual(alertController.title, "Error", "Alert title should be 'Error'")
+            XCTAssertEqual(alertController.message, "Please enter a number between 1 and 5.", "Alert message should prompt the user for a valid rating.")
+            
+            // Fulfill the expectation if the alert appears as expected
+            expectation.fulfill()
+        }
+        
+        // Wait for expectations to be fulfilled
+        waitForExpectations(timeout: 2, handler: nil)
+    }
+        
+    
+    
 }

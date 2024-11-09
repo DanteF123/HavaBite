@@ -35,11 +35,11 @@ class PlacesTableViewController: UITableViewController{
         places.count
     }
     
-    private func calculateDistance(from: CLLocation, to:CLLocation) -> CLLocationDistance{
+    func calculateDistance(from: CLLocation, to:CLLocation) -> CLLocationDistance{
         from.distance(from: to)
     }
     
-    private func formatDistanceForDisplay(_ distance: CLLocationDistance) ->String{
+    func formatDistanceForDisplay(_ distance: CLLocationDistance) ->String{
         let meters = Measurement(value: distance, unit: UnitLength.meters)
         return meters.converted(to: .miles).formatted()
     }
