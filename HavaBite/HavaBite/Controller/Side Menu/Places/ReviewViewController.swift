@@ -24,7 +24,7 @@ class ReviewViewController: UIViewController, UITextFieldDelegate {
         ratingTextField.delegate = self
         ratingTextField.keyboardType = .numberPad
 
-        restaurantName.text = "Rate \(place!.name)"
+        restaurantName.text = "Rate \(place?.name ?? "")"
     }
     // Upon button click, submit rating to Firebase.
     @IBAction func submitButtonClicked(_ sender: UIButton) {

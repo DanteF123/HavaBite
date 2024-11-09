@@ -57,20 +57,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
-    private func dupPresentPlacesSheet(places: [PlaceAnnotation]){
-        
-        guard let locationManager = locationManager,
-              let userLocation = locationManager.location else {return}
-        
-        let placesTVC = PlacesTableViewController(userLocation: userLocation, places: places)
-        placesTVC.modalPresentationStyle = .pageSheet
-        
-        if let sheet = placesTVC.sheetPresentationController{
-            sheet.prefersGrabberVisible = true
-            sheet.detents = [.medium(),.large()]
-            present(placesTVC,animated: true)
-        }
-    }
     
     private func presentPlacesSheet(places: [PlaceAnnotation]){
         

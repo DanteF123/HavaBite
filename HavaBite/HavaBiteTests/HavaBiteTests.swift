@@ -717,59 +717,60 @@ final class HavaBiteTests: XCTestCase {
         
     }
     
-    
-    //TC-26
-    func testFirebaseRating(){
+    func testFirebaseRating() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let welcomeVC = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
         welcomeVC.loadViewIfNeeded()
         
-        // Expectation to wait for the login to complete
         let loginExpectation = expectation(description: "Login completes successfully")
         
         // Perform login
         Auth.auth().signIn(withEmail: "x@x.com", password: "123456") { authResult, error in
-            loginExpectation.fulfill() // Fulfill expectation after login completes
+            if let error = error {
+                XCTFail("Login failed with error: \(error.localizedDescription)")
+            } else {
+                // Simulate the current user's session
+                UserSession.shared.loggedInUser = User(first_name: "Test", last_name: "User", email: "test@example.com", id: "currentUserId2")
+                loginExpectation.fulfill() // Fulfill expectation after login completes
+            }
         }
         
-        // Wait for the login process to complete
         wait(for: [loginExpectation], timeout: 10)
 
         let reviewVC = storyboard.instantiateViewController(withIdentifier: "ReviewID") as! ReviewViewController
-
         reviewVC.loadViewIfNeeded()  // Load view to trigger viewDidLoad
         
         // Set up a mock PlaceAnnotation
         let placemark = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 37.7750, longitude: -122.4195))
         let mapItem = MKMapItem(placemark: placemark)
+        
         mapItem.name = "Test Restaurant"
         reviewVC.place = PlaceAnnotation(mapItem: mapItem)
         
+        // Call postReview with a rating of "2"
         reviewVC.postReview(review: "2")
-        let expectation = self.expectation(description: "Review should be added to Firebase and available in Firestore")
         
-        // Delay to give time for Firestore write to complete (normally takes <1 second)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            // Query Firestore directly to check if the friend was added
+        // Expectation to check Firestore update
+        let reviewExpectation = expectation(description: "Review should be added to Firebase and available in Firestore")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             let db = Firestore.firestore()
-            let friendsRef = db.collection("users").document(UserSession.shared.loggedInUser!.id).collection("users").document(reviewVC.place!.id)
-
-            friendsRef.getDocument { (document, error) in
-                if let document = document, document.exists {
-                    // Assert that the document contains the correct data
+            let reviewRef = db.collection("users").document(UserSession.shared.loggedInUser!.id).collection("reviews").document(reviewVC.place!.id)
+            
+            reviewRef.getDocument { (document, error) in
+                if let error = error {
+                    XCTFail("Error fetching review: \(error.localizedDescription)")
+                } else if let document = document, document.exists {
                     let data = document.data()
-                    XCTAssertEqual(data?["rating"] as? Int, 2, "Rating should Match")
-                    
-                    expectation.fulfill()
+                    XCTAssertEqual(data?["rating"] as? Int, 2, "Rating should match expected value")
+                    reviewExpectation.fulfill()
                 } else {
-                    XCTFail("Review was not added to Firestore")
+                    XCTFail("Review document not found in Firestore")
                 }
             }
         }
 
-        // Wait for the expectations to be fulfilled
-        waitForExpectations(timeout: 5, handler: nil)
-        
+        wait(for: [reviewExpectation], timeout: 5)
     }
     
     
