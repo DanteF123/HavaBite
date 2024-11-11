@@ -8,13 +8,14 @@ class UserSession {
     var loggedInUser: User? // A property to store the logged-in user
     var friends: Set<String> = [] // A set to store the logged-in user's friends
     let db = Firestore.firestore()
-    let currentUser = Auth.auth().currentUser
+    var currentUser = Auth.auth().currentUser
     
     
     private init() {}
     
     // Initialize the logged-in user and fetch friends from Firestore
     func initializeLoggedInUser(with firebaseUser: FirebaseAuth.User, completion: @escaping () -> Void) {
+        currentUser = Auth.auth().currentUser
         let userId = firebaseUser.uid
         let docRef = db.collection("users").document(userId)
         

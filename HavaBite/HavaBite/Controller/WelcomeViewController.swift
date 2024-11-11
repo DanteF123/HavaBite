@@ -20,6 +20,10 @@ class WelcomeViewController: UIViewController, UITextFieldDelegate {
         //setting delegates to self so that keyboard is dismissed when return is tapped.
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        
+        // Register for keyboard notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -78,5 +82,22 @@ extension WelcomeViewController {
         }
     }
     
+    
+}
+
+
+extension WelcomeViewController{
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardFrame = keyboardSize.cgRectValue
+            // Adjust the view's position by moving it up
+            self.view.frame.origin.y = -keyboardFrame.height
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        // Reset the view's position
+        self.view.frame.origin.y = 0
+    }
     
 }
