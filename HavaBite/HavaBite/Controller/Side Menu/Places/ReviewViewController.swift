@@ -74,7 +74,7 @@ extension ReviewViewController{
         if review != -1{
             
             let reviewRef = db.collection("users").document(currentUser!.uid).collection("reviews").document(place!.id)
-            reviewRef.setData(["rating":review]){error in
+            reviewRef.setData(["rating":review, "restaurant":self.place?.name ?? ""]){error in
                 if let error = error {
                     print("Error posting review: \(error)")
 
