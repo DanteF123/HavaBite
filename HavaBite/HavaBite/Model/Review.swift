@@ -11,10 +11,12 @@ class Review{
     
     let id:String
     let rating:Int
+    let name:String
     
-    init(id: String, rating: Int) {
+    init(id: String, rating: Int, name: String) {
         self.id = id
         self.rating = rating
+        self.name = name
     }
     
 }

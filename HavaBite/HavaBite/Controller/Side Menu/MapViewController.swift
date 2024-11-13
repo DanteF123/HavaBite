@@ -41,21 +41,39 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     
     //TODO: Figure out how to handle the user rejecting 
-    private func checkLocationAuthorization(){
-        guard let locationManager = locationManager, let location = locationManager.location else { return }
-        
+    private func checkLocationAuthorization() {
+        guard let locationManager = locationManager else { return }
+
         switch locationManager.authorizationStatus {
         case .authorizedWhenInUse, .authorizedAlways:
-            let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 1750, longitudinalMeters: 1750)
-            mapView.setRegion(region, animated: true)
-            // Re-center the search region here
-            getNearbyRestaurants(for: region)
-        case .denied, .notDetermined, .restricted:
-            print("Authorization not granted.")
+            if let location = locationManager.location {
+                let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 1750, longitudinalMeters: 1750)
+                mapView.setRegion(region, animated: true)
+                getNearbyRestaurants(for: region)
+            }
+        case .denied:
+            // Show an alert asking the user to enable permissions in Settings
+            let alert = UIAlertController(
+                title: "Location Permission Denied",
+                message: "Location access is needed to show nearby restaurants. Please enable it in Settings.",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Settings", style: .default) { _ in
+                if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(appSettings)
+                }
+            })
+            self.present(alert, animated: true, completion: nil)
+            
+        case .restricted, .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+            
         @unknown default:
             print("Unknown authorization status.")
         }
     }
+    
     
     
     private func presentPlacesSheet(places: [PlaceAnnotation]){

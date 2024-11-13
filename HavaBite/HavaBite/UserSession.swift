@@ -9,6 +9,7 @@ class UserSession {
     var friends: Set<String> = [] // A set to store the logged-in user's friends
     let db = Firestore.firestore()
     var currentUser = Auth.auth().currentUser
+    var friendReviews: [String: [Int]] = [:]
     
     
     private init() {}
@@ -69,5 +70,15 @@ class UserSession {
                 completion() // Call completion once friends are fetched
             }
         }
+    }
+    
+    
+    //fetch the reviews for each of the user's friends
+    private func getReviews(userId: String, completion: @escaping () -> Void){
+        for x in friends{
+            print(x)
+        }
+        
+        
     }
 }

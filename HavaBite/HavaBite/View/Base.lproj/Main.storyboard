@@ -128,11 +128,11 @@
             <objects>
                 <viewController storyboardIdentifier="RegisterViewController" id="ld4-6n-baT" customClass="RegisterViewController" customModule="HavaBite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MQs-Nt-ygx">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Toa-GF-DV8">
-                                <rect key="frame" x="124" y="81" width="145" height="35"/>
+                                <rect key="frame" x="124" y="184" width="145" height="35"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -150,13 +150,13 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkM-Vl-QZf">
-                                <rect key="frame" x="48" y="315" width="103" height="20"/>
+                                <rect key="frame" x="48" y="418" width="103" height="20"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdk-pd-aMy">
-                                <rect key="frame" x="48" y="196" width="52" height="20"/>
+                                <rect key="frame" x="48" y="299" width="52" height="20"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -168,7 +168,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4n-cf-8SK">
-                                <rect key="frame" x="48" y="545" width="82" height="20"/>
+                                <rect key="frame" x="48" y="648" width="82" height="20"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -180,13 +180,13 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4k-ca-uYc">
-                                <rect key="frame" x="48" y="430" width="93" height="20"/>
+                                <rect key="frame" x="48" y="533" width="93" height="20"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Igp-LG-6fj">
-                                <rect key="frame" x="148.33333333333334" y="694" width="96.333333333333343" height="31.666666666666629"/>
+                                <rect key="frame" x="148.33333333333334" y="797" width="96.333333333333343" height="31.666666666666629"/>
                                 <accessibility key="accessibilityConfiguration" identifier="registerButton"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="15"/>
                                 <color key="tintColor" systemColor="systemBrownColor"/>
@@ -327,6 +327,7 @@
                     <connections>
                         <outlet property="mapView" destination="vfh-ae-hK2" id="wzx-Ez-54y"/>
                         <outlet property="sideMenuButton" destination="Uzg-tr-A9L" id="8Lv-3e-rhc"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="signOutFromMap" id="hbn-mV-ghf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="75G-81-KhD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -578,6 +579,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="lpE-CW-Nwy"/>
+        <segue reference="hbn-mV-ghf"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
