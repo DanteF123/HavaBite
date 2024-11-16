@@ -40,8 +40,12 @@ class UserSession {
                 
                 // Now fetch the user's friends
                 self.getUserFriends(userId: userId) {
-                    completion() // Call the completion handler once both user and friends are fetched
+                    // Now get user's friends reivews
+                    self.getReviews() {
+                        completion()
+                    }
                 }
+
             } else {
                 print("Document does not exist")
                 completion() // Call completion if the document does not exist
@@ -74,11 +78,41 @@ class UserSession {
     
     
     //fetch the reviews for each of the user's friends
-    private func getReviews(userId: String, completion: @escaping () -> Void){
-        for x in friends{
-            print(x)
+    private func getReviews(completion: @escaping () -> Void) {
+        let group = DispatchGroup() // To manage async tasks
+        
+        for friend in friends {
+            print("Fetching reviews for friend: \(friend)")
+            
+            group.enter() // Enter the group for each friend's reviews
+            let reviewRef = db.collection("users").document(friend).collection("reviews")
+            
+            reviewRef.getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    print("Error getting ratings for friend \(friend): \(error)")
+                } else if let querySnapshot = querySnapshot {
+                    for document in querySnapshot.documents {
+                        if let rating = document.data()["rating"] as? Int {
+                            let id = document.documentID
+                            
+                            // If the key doesn't exist, initialize an empty array
+                            if self.friendReviews[id] == nil {
+                                self.friendReviews[id] = []
+                            }
+                            
+                            // Append the rating to the array for this key
+                            self.friendReviews[id]?.append(rating)
+                        }
+                    }
+                }
+                
+                group.leave() // Leave the group once processing is done
+            }
         }
         
-        
+        group.notify(queue: .main) {
+            print("All reviews fetched: \(self.friendReviews)")
+            completion() // Call completion after all Firestore calls complete
+        }
     }
 }
