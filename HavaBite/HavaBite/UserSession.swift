@@ -17,6 +17,9 @@ class UserSession {
     // Initialize the logged-in user and fetch friends from Firestore
     func initializeLoggedInUser(with firebaseUser: FirebaseAuth.User, completion: @escaping () -> Void) {
         currentUser = Auth.auth().currentUser
+        friends.removeAll()
+        friendReviews.removeAll()
+        
         let userId = firebaseUser.uid
         let docRef = db.collection("users").document(userId)
         
@@ -80,7 +83,7 @@ class UserSession {
     //fetch the reviews for each of the user's friends
     private func getReviews(completion: @escaping () -> Void) {
         let group = DispatchGroup() // To manage async tasks
-        
+
         for friend in friends {
             print("Fetching reviews for friend: \(friend)")
             
@@ -92,9 +95,8 @@ class UserSession {
                     print("Error getting ratings for friend \(friend): \(error)")
                 } else if let querySnapshot = querySnapshot {
                     for document in querySnapshot.documents {
+                        let id = document.documentID
                         if let rating = document.data()["rating"] as? Int {
-                            let id = document.documentID
-                            
                             // If the key doesn't exist, initialize an empty array
                             if self.friendReviews[id] == nil {
                                 self.friendReviews[id] = []
