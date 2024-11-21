@@ -11,6 +11,8 @@ class UserSession {
     var currentUser = Auth.auth().currentUser
     var friendReviews: [String: [Int]] = [:]
     
+    var averageReviews:[String: Double] = [:]
+    
     
     private init() {}
     
@@ -114,7 +116,24 @@ class UserSession {
         
         group.notify(queue: .main) {
             print("All reviews fetched: \(self.friendReviews)")
+            self.calculateAverageReview()
+            print("review average\(self.averageReviews)")
             completion() // Call completion after all Firestore calls complete
+        }
+    }
+    
+    //Method to calculate the average review from the friendsReview Hashmap
+    private func calculateAverageReview(){
+        for restaurant in friendReviews{
+            if !friendReviews[restaurant.key]!.isEmpty{
+                let sum = (friendReviews[restaurant.key]?.reduce(0,+))!
+                let average = Double(sum) / Double(friendReviews[restaurant.key]!.count) // Calculate average
+                
+                // Round to one decimal place
+                let roundedAverage = round(average * 10) / 10
+                
+                averageReviews[restaurant.key] = roundedAverage
+            }
         }
     }
 }

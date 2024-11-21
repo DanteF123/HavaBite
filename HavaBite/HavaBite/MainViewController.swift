@@ -26,6 +26,7 @@ class MainViewController: UIViewController {
     private var draggingIsEnabled: Bool = false
     private var panBaseLocation: CGFloat = 0.0
     
+
     @IBAction open func revealSideMenu() {
         self.sideMenuState(expanded: self.isExpanded ? false : true)
     }
@@ -38,10 +39,13 @@ class MainViewController: UIViewController {
             panGestureRecognizer.delegate = self
             view.addGestureRecognizer(panGestureRecognizer)
         
+        // Setting the side menu visuals
         self.sideMenuShadowView = UIView(frame: self.view.bounds)
         self.sideMenuShadowView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.sideMenuShadowView.backgroundColor = .black
         self.sideMenuShadowView.alpha = 0.0
+        
+        // Handling user tapping on side menu button
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TapGestureRecognizer))
         tapGestureRecognizer.numberOfTapsRequired = 1
         tapGestureRecognizer.delegate = self
@@ -91,7 +95,10 @@ class MainViewController: UIViewController {
     }
     
 }
+
 extension MainViewController: SideMenuViewControllerDelegate {
+    
+    // Determining which side menu item instantiates which view controller.
     func selectedCell(_ row: Int) {
         switch row {
         case 0:
@@ -116,6 +123,8 @@ extension MainViewController: SideMenuViewControllerDelegate {
         DispatchQueue.main.async { self.sideMenuState(expanded: false) }
     }
     
+    
+    // Method to sign user out
     func signOutUser() {
         do {
             try Auth.auth().signOut()
@@ -126,7 +135,7 @@ extension MainViewController: SideMenuViewControllerDelegate {
         }
     }
     
-    
+    // Method to show view controller upon tap
     func showViewController<T: UIViewController>(viewController: T.Type, storyboardId: String) -> () {
         // Remove the previous View
         for subview in view.subviews {
@@ -150,6 +159,7 @@ extension MainViewController: SideMenuViewControllerDelegate {
         vc.didMove(toParent: self)
     }
     
+    //Method to handle expansion and collapse of side menu.
     func sideMenuState(expanded: Bool) {
         if expanded {
             self.animateSideMenu(targetPosition: self.revealSideMenuOnTop ? 0 : self.sideMenuRevealWidth) { _ in
@@ -223,7 +233,6 @@ extension MainViewController: UIGestureRecognizerDelegate {
     // Dragging Side Menu
     @objc private func handlePanGesture(sender: UIPanGestureRecognizer) {
         
-        // ...
 
         let position: CGFloat = sender.translation(in: self.view).x
         let velocity: CGFloat = sender.velocity(in: self.view).x

@@ -20,9 +20,11 @@ class FriendsViewController: UIViewController, UITableViewDataSource {
     let db = Firestore.firestore()
     let currentUser = UserSession.shared.currentUser
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Adjusting cell color to match design philosophy
         friendsList.backgroundColor = #colorLiteral(red: 0.5989779234, green: 0.825442493, blue: 0.8293678164, alpha: 1)
         friendsList.dataSource = self
         
@@ -52,6 +54,7 @@ extension FriendsViewController: FriendCellDelegate {
         return friends.count
     }
     
+    //Assigning data to cell for table view
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let listItem = friends[indexPath.row].email
         
@@ -64,7 +67,7 @@ extension FriendsViewController: FriendCellDelegate {
         return cell
     }
     
-    
+    //Handling logic if the user taps the remove button on the friend's modal.
     func didTapRemoveButton(on cell: FriendCell) {
         print("Button clicked")
         // Remove friend from Firestore
@@ -80,13 +83,15 @@ extension FriendsViewController: FriendCellDelegate {
                 UserSession.shared.friends.remove(friendToRemove.id)
                 
             } else {
-                // Handle the error (e.g., show an alert)
+                // Print failure
                 print("Failed to remove friend.")
             }
         }
+        //Reload the data so the list is updated visually.
         friendsList.reloadData()
     }
     
+    //Method to handle removal by deleting the corresponding document from the backend.
     private func removeFriend(_ friend: User, completion: @escaping (Bool) -> Void) {
 
         db.collection("users").document(currentUser!.uid).collection("users").document(friend.id).delete { error in
