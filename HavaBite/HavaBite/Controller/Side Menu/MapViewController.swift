@@ -116,6 +116,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 if !self.places.contains(where: { $0.id == place.id }) {
                     
                     self.places.append(place)
+                    
     
                     //place id
                     print(place.id)
@@ -158,24 +159,6 @@ extension MapViewController {
         presentPlacesSheet(places: sortedPlaces)
     }
 
-    // This method provides the custom annotation view
-//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        guard let annotation = annotation as? PlaceAnnotation else { return nil }
-//        
-//        let identifier = "PlaceAnnotation"
-//        var view: PlaceAnnotationView
-//        
-//        // Reuse the annotation view if possible
-//        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? PlaceAnnotationView {
-//            dequeuedView.annotation = annotation
-//            view = dequeuedView
-//        } else {
-//            // Create a new annotation view
-//            view = PlaceAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-//        }
-//        
-//        return view
-//    }
 
 }
 

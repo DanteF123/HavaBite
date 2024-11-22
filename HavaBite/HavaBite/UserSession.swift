@@ -10,7 +10,6 @@ class UserSession {
     let db = Firestore.firestore()
     var currentUser = Auth.auth().currentUser
     var friendReviews: [String: [Int]] = [:]
-    
     var averageReviews:[String: Double] = [:]
     
     
@@ -21,6 +20,7 @@ class UserSession {
         currentUser = Auth.auth().currentUser
         friends.removeAll()
         friendReviews.removeAll()
+        averageReviews.removeAll()
         
         let userId = firebaseUser.uid
         let docRef = db.collection("users").document(userId)
