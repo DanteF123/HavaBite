@@ -72,9 +72,10 @@ extension ReviewViewController{
         let review = self.validateInput(input: review)
         
         if review != -1{
+            let object = Review(id: place!.id, rating: review, name: place!.name)
             
-            let reviewRef = db.collection("users").document(currentUser!.uid).collection("reviews").document(place!.id)
-            reviewRef.setData(["rating":review]){error in
+            let reviewRef = db.collection("users").document(currentUser!.uid).collection("reviews").document(object.id)
+            reviewRef.setData(["rating":object.rating, "restaurant":object.name]){error in
                 if let error = error {
                     print("Error posting review: \(error)")
 

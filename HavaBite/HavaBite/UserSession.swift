@@ -9,6 +9,8 @@ class UserSession {
     var friends: Set<String> = [] // A set to store the logged-in user's friends
     let db = Firestore.firestore()
     var currentUser = Auth.auth().currentUser
+    var friendReviews: [String: [Int]] = [:]
+    var averageReviews:[String: Double] = [:]
     
     
     private init() {}
@@ -16,6 +18,10 @@ class UserSession {
     // Initialize the logged-in user and fetch friends from Firestore
     func initializeLoggedInUser(with firebaseUser: FirebaseAuth.User, completion: @escaping () -> Void) {
         currentUser = Auth.auth().currentUser
+        friends.removeAll()
+        friendReviews.removeAll()
+        averageReviews.removeAll()
+        
         let userId = firebaseUser.uid
         let docRef = db.collection("users").document(userId)
         
@@ -39,8 +45,12 @@ class UserSession {
                 
                 // Now fetch the user's friends
                 self.getUserFriends(userId: userId) {
-                    completion() // Call the completion handler once both user and friends are fetched
+                    // Now get user's friends reivews
+                    self.getReviews() {
+                        completion()
+                    }
                 }
+
             } else {
                 print("Document does not exist")
                 completion() // Call completion if the document does not exist
@@ -67,6 +77,62 @@ class UserSession {
                 self.friends = friendSet // Set the friends set
                 print("Friends fetched: \(friendSet)")
                 completion() // Call completion once friends are fetched
+            }
+        }
+    }
+    
+    
+    //fetch the reviews for each of the user's friends
+    private func getReviews(completion: @escaping () -> Void) {
+        let group = DispatchGroup() // To manage async tasks
+
+        for friend in friends {
+            print("Fetching reviews for friend: \(friend)")
+            
+            group.enter() // Enter the group for each friend's reviews
+            let reviewRef = db.collection("users").document(friend).collection("reviews")
+            
+            reviewRef.getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    print("Error getting ratings for friend \(friend): \(error)")
+                } else if let querySnapshot = querySnapshot {
+                    for document in querySnapshot.documents {
+                        let id = document.documentID
+                        if let rating = document.data()["rating"] as? Int {
+                            // If the key doesn't exist, initialize an empty array
+                            if self.friendReviews[id] == nil {
+                                self.friendReviews[id] = []
+                            }
+                            
+                            // Append the rating to the array for this key
+                            self.friendReviews[id]?.append(rating)
+                        }
+                    }
+                }
+                
+                group.leave() // Leave the group once processing is done
+            }
+        }
+        
+        group.notify(queue: .main) {
+            print("All reviews fetched: \(self.friendReviews)")
+            self.calculateAverageReview()
+            print("review average\(self.averageReviews)")
+            completion() // Call completion after all Firestore calls complete
+        }
+    }
+    
+    //Method to calculate the average review from the friendsReview Hashmap
+    private func calculateAverageReview(){
+        for restaurant in friendReviews{
+            if !friendReviews[restaurant.key]!.isEmpty{
+                let sum = (friendReviews[restaurant.key]?.reduce(0,+))!
+                let average = Double(sum) / Double(friendReviews[restaurant.key]!.count) // Calculate average
+                
+                // Round to one decimal place
+                let roundedAverage = round(average * 10) / 10
+                
+                averageReviews[restaurant.key] = roundedAverage
             }
         }
     }

@@ -28,6 +28,7 @@
 		7B655B0D2CD1A75B0056A13C /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B655B0C2CD1A75B0056A13C /* Place.swift */; };
 		7B655B0F2CD2E5A90056A13C /* PlaceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B655B0E2CD2E5A90056A13C /* PlaceDetailsViewController.swift */; };
 		7B655B112CD2F0DA0056A13C /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B655B102CD2F0DA0056A13C /* ReviewViewController.swift */; };
+		7B655B132CE411A30056A13C /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B655B122CE411A30056A13C /* Review.swift */; };
 		7B6AB0D72C925EE80023FE72 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6AB0D62C925EE80023FE72 /* WelcomeViewController.swift */; };
 		7B7D48082CAE0BF90098D2BD /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7D48072CAE0BF90098D2BD /* UserSession.swift */; };
 		7B7D480A2CB1D39F0098D2BD /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B7D48092CB1D39F0098D2BD /* FriendCell.xib */; };
@@ -93,6 +94,7 @@
 		7B655B0C2CD1A75B0056A13C /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		7B655B0E2CD2E5A90056A13C /* PlaceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailsViewController.swift; sourceTree = "<group>"; };
 		7B655B102CD2F0DA0056A13C /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		7B655B122CE411A30056A13C /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		7B6AB0D62C925EE80023FE72 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		7B7D48072CAE0BF90098D2BD /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		7B7D48092CB1D39F0098D2BD /* FriendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				7BC58CBE2C9602B900BA4B69 /* User.swift */,
 				7BC58CC72C9A31F900BA4B69 /* SideMenuModel.swift */,
 				7B655B0C2CD1A75B0056A13C /* Place.swift */,
+				7B655B122CE411A30056A13C /* Review.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				7B655B072CCC4FF10056A13C /* PlaceAnnotationView.swift in Sources */,
 				7BC58CCE2C9B8B1A00BA4B69 /* MapViewController.swift in Sources */,
 				7B1EB9452CA357EE005A83D0 /* UserDetailsViewController.swift in Sources */,
+				7B655B132CE411A30056A13C /* Review.swift in Sources */,
 				7B6AB0D72C925EE80023FE72 /* WelcomeViewController.swift in Sources */,
 				7B272DA52C865EF2002DDD32 /* AppDelegate.swift in Sources */,
 				7B272DA72C865EF2002DDD32 /* SceneDelegate.swift in Sources */,
@@ -633,16 +637,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9US789XHWW;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 9US789XHWW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HavaBite/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "HavaBite requires location so it can find nearby restaurants";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -652,6 +660,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dante.HavaBite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "HavaBite Distribution";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -664,16 +673,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9US789XHWW;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 9US789XHWW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HavaBite/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "HavaBite requires location so it can find nearby restaurants";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -683,6 +696,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dante.HavaBite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "HavaBite Distribution";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

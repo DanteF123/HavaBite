@@ -456,7 +456,7 @@ final class HavaBiteTests: XCTestCase {
         friendsVC.loadViewIfNeeded()
         
         // Simulate the current user's session and friends
-        UserSession.shared.loggedInUser = User(first_name: "Test", last_name: "User", email: "test@example.com", id: "currentUserId1")
+        UserSession.shared.loggedInUser = User(first_name: "Test", last_name: "User", email: "testxyz@example.com", id: "currentUserId12")
         
         // Add a test friend to the friends array
         let friend = User(first_name: "John", last_name: "Doe", email: "john@example.com", id: "friendId123")
@@ -776,58 +776,241 @@ final class HavaBiteTests: XCTestCase {
     
     
     //TC-27
-    func testInvalidReview(){
-        
+    func testInvalidReview() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let welcomeVC = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
         welcomeVC.loadViewIfNeeded()
         
-        // Expectation to wait for the login to complete
+        // Expectation to wait for login to complete
         let loginExpectation = expectation(description: "Login completes successfully")
         
-        // Perform login
         Auth.auth().signIn(withEmail: "x@x.com", password: "123456") { authResult, error in
-            loginExpectation.fulfill() // Fulfill expectation after login completes
+            loginExpectation.fulfill()
         }
         
-        // Wait for the login process to complete
         wait(for: [loginExpectation], timeout: 10)
 
         let reviewVC = storyboard.instantiateViewController(withIdentifier: "ReviewID") as! ReviewViewController
+        reviewVC.loadViewIfNeeded()
 
-        reviewVC.loadViewIfNeeded()  // Load view to trigger viewDidLoad
-        
-        let expectation = expectation(description: "Error alert should be presented")
-        
         // Set up a mock PlaceAnnotation
         let placemark = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 37.7750, longitude: -122.4195))
         let mapItem = MKMapItem(placemark: placemark)
         mapItem.name = "Test Restaurant"
         reviewVC.place = PlaceAnnotation(mapItem: mapItem)
-        
-        // Call postReview with invalid rating "9"
+
+        // Expectation to observe the alert presentation
+        expectation(for: NSPredicate { _, _ in
+            return reviewVC.presentedViewController is UIAlertController
+        }, evaluatedWith: nil, handler: nil)
+
         reviewVC.postReview(review: "9")
+
+        waitForExpectations(timeout: 4, handler: nil)
+
+        if let alertController = reviewVC.presentedViewController as? UIAlertController {
+            XCTAssertEqual(alertController.title, "Error", "Alert title should be 'Error'")
+            XCTAssertEqual(alertController.message, "Please enter a number between 1 and 5.", "Alert message should prompt the user for a valid rating.")
+        } else {
+            XCTFail("Expected an alert controller to be presented.")
+        }
+    }
+    
+    //TC-28
+    func testLoadFriendReviews() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let welcomeVC = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
+        welcomeVC.loadViewIfNeeded()
         
-        // Delay to allow the alert to present
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            // Check if the presented view controller is an alert
-            guard let alertController = reviewVC.presentedViewController as? UIAlertController else {
-                XCTFail("Expected an alert controller to be presented.")
+        // Expectation for login completion
+        let loginExpectation = expectation(description: "Login completes successfully")
+        
+        // Perform login
+        Auth.auth().signIn(withEmail: "appuser3@email.com", password: "123456") { authResult, error in
+            guard let user = authResult?.user, error == nil else {
+                XCTFail("Login failed: \(error?.localizedDescription ?? "No error message")")
+                loginExpectation.fulfill()
                 return
             }
             
-            // Verify the alert message and title
-            XCTAssertEqual(alertController.title, "Error", "Alert title should be 'Error'")
-            XCTAssertEqual(alertController.message, "Please enter a number between 1 and 5.", "Alert message should prompt the user for a valid rating.")
-            
-            // Fulfill the expectation if the alert appears as expected
-            expectation.fulfill()
+            // Initialize logged-in user
+            UserSession.shared.initializeLoggedInUser(with: user) {
+                loginExpectation.fulfill()
+            }
         }
         
-        // Wait for expectations to be fulfilled
-        waitForExpectations(timeout: 2, handler: nil)
-    }
+        // Wait for login and initialization
+        wait(for: [loginExpectation], timeout: 20)
         
+        // Validate friend reviews
+        var ct = 0
+        let reviews = UserSession.shared.friendReviews
+        print(reviews)
+        for restaurant in reviews {
+            if !reviews[restaurant.key]!.isEmpty {
+                ct += reviews[restaurant.key]!.count
+            }
+        }
+        print(ct)
+        
+        XCTAssertEqual(ct, 10)
+    }
+    
+    //TC-29
+    func testLoadZeroReviews() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let welcomeVC = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
+        welcomeVC.loadViewIfNeeded()
+        
+        // Expectation for login completion
+        let loginExpectation = expectation(description: "Login completes successfully")
+        
+        // Perform login
+        Auth.auth().signIn(withEmail: "appuser1@email.com", password: "123456") { authResult, error in
+            guard let user = authResult?.user, error == nil else {
+                XCTFail("Login failed: \(error?.localizedDescription ?? "No error message")")
+                loginExpectation.fulfill()
+                return
+            }
+            
+            // Initialize logged-in user
+            UserSession.shared.initializeLoggedInUser(with: user) {
+                loginExpectation.fulfill()
+            }
+        }
+        
+        // Wait for login and initialization
+        wait(for: [loginExpectation], timeout: 20)
+        
+        // Validate friend reviews
+        var ct = 0
+        let reviews = UserSession.shared.friendReviews
+        print(reviews)
+        for restaurant in reviews {
+            if !reviews[restaurant.key]!.isEmpty {
+                ct += reviews[restaurant.key]!.count
+            }
+        }
+        print(ct)
+        
+        XCTAssertEqual(ct, 0)
+    }
     
     
+    
+    //TC-30
+    func testCalculateAverageReview() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let welcomeVC = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
+        welcomeVC.loadViewIfNeeded()
+        
+        // Expectation for login completion
+        let loginExpectation = expectation(description: "Login completes successfully")
+        
+        // Perform login
+        Auth.auth().signIn(withEmail: "appuser3@email.com", password: "123456") { authResult, error in
+            guard let user = authResult?.user, error == nil else {
+                XCTFail("Login failed: \(error?.localizedDescription ?? "No error message")")
+                loginExpectation.fulfill()
+                return
+            }
+            
+            // Initialize logged-in user
+            UserSession.shared.initializeLoggedInUser(with: user) {
+                loginExpectation.fulfill()
+            }
+        }
+        
+        // Wait for login and initialization
+        wait(for: [loginExpectation], timeout: 20)
+        
+        let testRestaurantKey = "LAT:39.9613262 LONG:-75.1593655"
+        let averageRating = 3.5
+        
+        
+        XCTAssertEqual(UserSession.shared.averageReviews[testRestaurantKey], averageRating)
+    }
+    
+    //TC-31
+    
+    func testRestaurantRatingIsDisplayed() {
+        // Mock user location
+        let userLocation = CLLocation(latitude: 37.7749, longitude: -122.4194) 
+        
+        // Create a mock PlaceAnnotation with a rating
+        let mockPlace = PlaceAnnotation(
+            mapItem: MKMapItem()
+        )
+        
+        mockPlace.rating = 4.5
+        
+        // Create an instance of PlacesTableViewController with the mock place
+        let placesVC = PlacesTableViewController(userLocation: userLocation, places: [mockPlace])
+        
+        // Load the view to initialize the table view
+        _ = placesVC.view
+        
+        // Get the first cell
+        let cell = placesVC.tableView(placesVC.tableView, cellForRowAt: IndexPath(row: 0, section: 0)) as? RestaurantTableCell
+        
+        // Assert that the restaurant rating is displayed correctly
+        XCTAssertEqual(cell?.restaurantRating.text, "4.5")
+    }
+    
+    
+    //TC-32
+    func testNilRestaurantRatingIsDisplayed() {
+        // Mock user location
+        let userLocation = CLLocation(latitude: 37.7749, longitude: -122.4194)
+        
+        // Create a mock PlaceAnnotation with a rating
+        let mockPlace = PlaceAnnotation(
+            mapItem: MKMapItem()
+        )
+        
+        mockPlace.rating = nil
+        
+        // Create an instance of PlacesTableViewController with the mock place
+        let placesVC = PlacesTableViewController(userLocation: userLocation, places: [mockPlace])
+        
+        // Load the view to initialize the table view
+        _ = placesVC.view
+        
+        // Get the first cell
+        let cell = placesVC.tableView(placesVC.tableView, cellForRowAt: IndexPath(row: 0, section: 0)) as? RestaurantTableCell
+        
+        // Assert that the restaurant rating is displayed correctly
+        XCTAssertEqual(cell?.restaurantRating.text, "")
+    }
+    
+    
+    //TC-32
+    func testRestaurantDistanceIsDisplayedCorrectly() {
+            // Mock user location
+            let userLocation = CLLocation(latitude: 40.7128, longitude: -74.0060)
+            
+            // Mock place location (e.g., a nearby restaurant)
+            let placeLocation = CLLocation(latitude: 40.730610, longitude: -73.935242)
+        
+            // Create a mock PlaceAnnotation
+            let mockPlace = PlaceAnnotation(
+                mapItem: MKMapItem()
+            )
+            
+            // Create an instance of PlacesTableViewController with the mock data
+            let placesVC = PlacesTableViewController(userLocation: userLocation, places: [mockPlace])
+            
+            // Load the view to initialize the table view
+            _ = placesVC.view
+            
+            // Calculate the expected distance in miles
+            let distance = userLocation.distance(from: placeLocation) // In meters
+            let distanceInMiles = Measurement(value: distance, unit: UnitLength.meters).converted(to: .miles).formatted()
+            
+            // Get the first cell
+            let cell = placesVC.tableView(placesVC.tableView, cellForRowAt: IndexPath(row: 0, section: 0)) as? RestaurantTableCell
+            
+            // Assert that the distance is displayed
+            XCTAssertNotNil(cell?.restaurantDistance.text)
+        }
 }

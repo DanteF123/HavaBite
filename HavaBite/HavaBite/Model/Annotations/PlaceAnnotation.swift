@@ -11,12 +11,17 @@ import MapKit
 class PlaceAnnotation: MKPointAnnotation{
     let mapItem: MKMapItem
     let id : String
+    var rating : Double? = nil
     var isSelected:Bool = false
     
     init(mapItem: MKMapItem){
         self.mapItem = mapItem
         
         self.id = "LAT:\(mapItem.placemark.coordinate.latitude.description) LONG:\(mapItem.placemark.coordinate.longitude.description)"
+        
+        //Populate rating with average review
+        self.rating = UserSession.shared.averageReviews[self.id]
+        
         super.init()
         self.coordinate = mapItem.placemark.coordinate
     }

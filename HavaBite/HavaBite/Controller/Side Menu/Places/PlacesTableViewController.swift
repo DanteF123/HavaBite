@@ -76,7 +76,11 @@ class PlacesTableViewController: UITableViewController{
         cell.restaurant.text = place.name
         cell.restaurantDistance.text = formatDistanceForDisplay(calculateDistance(from: userLocation, to: place.location))
         
-        cell.restaurantRating.text = "0"
+        if let rating = place.rating {
+            cell.restaurantRating.text = String(format: "%.1f", rating)
+        } else {
+            cell.restaurantRating.text = ""
+        }
         
         return cell
     }
