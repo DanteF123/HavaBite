@@ -456,7 +456,7 @@ final class HavaBiteTests: XCTestCase {
         friendsVC.loadViewIfNeeded()
         
         // Simulate the current user's session and friends
-        UserSession.shared.loggedInUser = User(first_name: "Test", last_name: "User", email: "test@example.com", id: "currentUserId1")
+        UserSession.shared.loggedInUser = User(first_name: "Test", last_name: "User", email: "testxyz@example.com", id: "currentUserId12")
         
         // Add a test friend to the friends array
         let friend = User(first_name: "John", last_name: "Doe", email: "john@example.com", id: "friendId123")
@@ -776,56 +776,44 @@ final class HavaBiteTests: XCTestCase {
     
     
     //TC-27
-    func testInvalidReview(){
-        
+    func testInvalidReview() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let welcomeVC = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController") as! WelcomeViewController
         welcomeVC.loadViewIfNeeded()
         
-        // Expectation to wait for the login to complete
+        // Expectation to wait for login to complete
         let loginExpectation = expectation(description: "Login completes successfully")
         
-        // Perform login
         Auth.auth().signIn(withEmail: "x@x.com", password: "123456") { authResult, error in
-            loginExpectation.fulfill() // Fulfill expectation after login completes
+            loginExpectation.fulfill()
         }
         
-        // Wait for the login process to complete
         wait(for: [loginExpectation], timeout: 10)
 
         let reviewVC = storyboard.instantiateViewController(withIdentifier: "ReviewID") as! ReviewViewController
+        reviewVC.loadViewIfNeeded()
 
-        reviewVC.loadViewIfNeeded()  // Load view to trigger viewDidLoad
-        
-        let expectation = expectation(description: "Error alert should be presented")
-        
         // Set up a mock PlaceAnnotation
         let placemark = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 37.7750, longitude: -122.4195))
         let mapItem = MKMapItem(placemark: placemark)
         mapItem.name = "Test Restaurant"
         reviewVC.place = PlaceAnnotation(mapItem: mapItem)
-        
-        // Call postReview with invalid rating "9"
+
+        // Expectation to observe the alert presentation
+        expectation(for: NSPredicate { _, _ in
+            return reviewVC.presentedViewController is UIAlertController
+        }, evaluatedWith: nil, handler: nil)
+
         reviewVC.postReview(review: "9")
-        
-        // Delay to allow the alert to present
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            // Check if the presented view controller is an alert
-            guard let alertController = reviewVC.presentedViewController as? UIAlertController else {
-                XCTFail("Expected an alert controller to be presented.")
-                return
-            }
-            
-            // Verify the alert message and title
+
+        waitForExpectations(timeout: 4, handler: nil)
+
+        if let alertController = reviewVC.presentedViewController as? UIAlertController {
             XCTAssertEqual(alertController.title, "Error", "Alert title should be 'Error'")
             XCTAssertEqual(alertController.message, "Please enter a number between 1 and 5.", "Alert message should prompt the user for a valid rating.")
-            
-            // Fulfill the expectation if the alert appears as expected
-            expectation.fulfill()
+        } else {
+            XCTFail("Expected an alert controller to be presented.")
         }
-        
-        // Wait for expectations to be fulfilled
-        waitForExpectations(timeout: 2, handler: nil)
     }
     
     //TC-28

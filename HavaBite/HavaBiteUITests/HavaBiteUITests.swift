@@ -67,7 +67,7 @@ final class HavaBiteUITests: XCTestCase {
 
         let emailTextField = app.textFields["registerEmailText"]
         emailTextField.tap()
-        emailTextField.typeText("john8@example.com")
+        emailTextField.typeText("john11@example.com")
         backgroundElement.tap()
 
         let passwordTextField = app.textFields["registerPasswordText"]
